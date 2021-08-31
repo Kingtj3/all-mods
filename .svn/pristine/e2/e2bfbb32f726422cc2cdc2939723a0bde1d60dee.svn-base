@@ -1,0 +1,407 @@
+using System;
+using ParallelTasks;
+using ProtoBuf;
+using Sandbox.Definitions;
+using Sandbox.Game;
+using Sandbox.Game.Entities;
+using Sandbox.ModAPI;
+using VRage.Game;
+using VRage.Utils;
+using VRage.Voxels;
+using VRageMath;
+using Vsi.Utils;
+
+namespace Vsi.AutoMiner
+{
+
+    public class AutoMinerDrill
+    {
+
+        public static readonly int DRILL_OFFSET = 6;
+        public static readonly float HARVEST_EFFICIENCY = 0.6f;
+
+        private static readonly MyStringId debugAreaResourceId = MyStringId.GetOrCompute("AutoMinerArea");
+        private static readonly MyStringId debugLineResourceId = MyStringId.GetOrCompute("AutoMinerAreaLine");
+
+        public enum OperationStateEnum
+        {
+            Idle = 0, Running, Paused
+        }
+
+        public Action<byte, float> OnOreHarvested;
+
+        public class StorageDataCache : MyStorageData
+        {
+            public Vector3I Min { get; private set; }
+            public Vector3I Max { get; private set; }
+
+            public StorageDataCache()
+                : base(MyStorageDataTypeFlags.ContentAndMaterial)
+            { }
+
+            public new void Resize(Vector3I start, Vector3I end)
+            {
+                Min = start;
+                Max = end;
+
+                base.Resize(start, end);
+            }
+        }
+
+        [ProtoContract]
+        public class DrillState
+        {
+            [ProtoMember(1)]
+            public BoundingBoxD CurrentSlice;
+
+            [ProtoMember(2)]
+            public Vector3I DrillPosition;
+
+            [ProtoMember(3)]
+            public int DrillPositionIndex;
+
+            [ProtoMember(4)]
+            public OperationStateEnum OperationState = OperationStateEnum.Idle;
+        }
+
+        internal class DrillResult
+        {
+            public byte Material;
+            public float Volume;
+            public Vector3I DrillPosition;
+            public string MinedOre;
+
+            public void Clear()
+            {
+                Material = 0;
+                Volume = 0;
+                DrillPosition = default(Vector3I);
+                MinedOre = null;
+            }
+        }
+
+        private StorageDataCache m_cache;
+        private BoundingBoxD m_drillArea;
+        private MatrixD m_worldMatrix;
+        private MatrixD m_worldMatrixInverse;
+        private MyVoxelBase m_voxelMap;
+        private BoundingBoxI m_corners;
+        private BoundingBoxI m_cacheCorners;
+        private DrillState m_state;
+        private DrillResult m_drillResult;
+        
+        private TimerTicker m_timer;
+        private Task? m_task;
+
+        public double CurrentDepth { get { return State.CurrentSlice.Max.Z; } }
+        public string CurrentOre { get { return m_drillResult.MinedOre; } }
+        public string OreFilter { get; set; }
+
+        public double PowerConsumptionModifier { get { return State.CurrentSlice.Max.Z / 10f; } }
+
+        public DrillState State
+        {
+            get { return m_state; }
+            set
+            {
+                m_state = value;
+                if (m_state.OperationState == OperationStateEnum.Running)
+                {
+                    InitWorkOnSlice();
+                }
+            }
+        }
+
+        public bool IsIdle => State.OperationState == OperationStateEnum.Idle;
+        public bool IsPaused => State.OperationState == OperationStateEnum.Paused;
+        public bool IsRunning => State.OperationState == OperationStateEnum.Running;
+
+        public BoundingBoxD DrillArea
+        {
+            get { return m_drillArea; }
+            set
+            {
+                m_drillArea = value;
+                State.CurrentSlice.Min.X = m_drillArea.Min.X;
+                State.CurrentSlice.Min.Z = m_drillArea.Min.Z;
+
+                State.CurrentSlice.Max.X = m_drillArea.Max.X;
+                State.CurrentSlice.Max.Z = m_drillArea.Max.Z;
+            }
+        }
+
+        public AutoMinerDrill()
+        {
+            m_cache = new StorageDataCache();
+            m_state = new DrillState();
+            m_drillResult = new DrillResult();
+        }
+
+        public void DrawDrillArea()
+        {
+            var color = Color.Blue;
+            var offset = DRILL_OFFSET - 2.5;
+            var box = m_drillArea + new Vector3D(0, 0, -offset);
+            box.Max.Z += offset;
+            MySimpleObjectDraw.DrawTransparentBox(ref m_worldMatrix, ref box, ref color, MySimpleObjectRasterizer.SolidAndWireframe, 1, 0.0001f, debugAreaResourceId, debugLineResourceId);
+        }
+
+        public void Init(MatrixD worldMatrix, MyVoxelBase voxelMap)
+        {
+            m_worldMatrix = MatrixD.CreateWorld(worldMatrix.Translation, worldMatrix.Up, worldMatrix.Forward);
+            m_worldMatrixInverse = MatrixD.Invert(m_worldMatrix);
+            m_voxelMap = voxelMap;
+        }
+
+        public void Pause()
+        {
+            State.OperationState = OperationStateEnum.Paused;
+        }
+
+        public void Resume()
+        {
+            if (IsPaused)
+                State.OperationState = OperationStateEnum.Running;
+        }
+
+        public void Start()
+        {
+            if (IsRunning)
+                return;
+
+            State.CurrentSlice = new BoundingBoxD(DrillArea.Min, new Vector3D(DrillArea.Max.X, DrillArea.Max.Y, DrillArea.Min.Z + 1));
+
+            if (m_voxelMap == null)
+                return;
+
+            InitWorkOnSlice();
+
+            State.DrillPosition = m_corners.Min;
+            State.OperationState = OperationStateEnum.Running;
+        }
+
+        public void Stop()
+        {
+            State.OperationState = OperationStateEnum.Idle;
+        }
+
+        public void Update()
+        {
+            if (!IsRunning || m_voxelMap == null)
+                return;
+
+            if (m_timer != null)
+            {
+                m_timer.Tick();
+                return;
+            }
+
+            if (!m_task.HasValue)
+            {
+                m_task = MyAPIGateway.Parallel.Start(() =>
+                {
+                    try 
+                    {
+                        lock (m_drillResult)
+                            while (!DrillInternal()) ;
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e.Message);
+                    }
+                });
+                return;
+            }
+            else if (!m_task.Value.IsComplete)
+            {
+                return;
+            }
+
+            if (DrillArea.Contains(State.CurrentSlice) == ContainmentType.Disjoint)
+            {
+                Stop();
+                return;
+            }
+            lock (m_drillResult)
+            {
+                if (m_drillResult.Volume > 0)
+                {
+                    var cache = new StorageDataCache();
+                    var relPos = ReadVoxelData(cache, m_drillResult.DrillPosition, 2);
+                    var content = cache.Content(ref relPos);
+                    var mat = cache.Material(ref relPos);
+                    var toRemove = (int)(m_drillResult.Volume * MyVoxelConstants.VOXEL_CONTENT_FULL);
+                    var newContent = Math.Max(content - toRemove, 0);
+                    var removed = content - newContent;
+                    // Log.Info($"HARVEST: {m_drillResult.DrillPosition}, CON: {content} MAT: {m_drillResult.Material}, READMAT: {mat}, REMOVED: {removed}");
+                    if (removed > 0 && m_drillResult.Material == mat)
+                    {
+                        cache.Content(ref relPos, (byte)newContent);
+
+                        if (newContent == MyVoxelConstants.VOXEL_CONTENT_EMPTY)
+                            cache.Material(ref relPos, MyVoxelConstants.NULL_MATERIAL);
+
+                        m_voxelMap.Storage.WriteRange(cache, MyStorageDataTypeFlags.ContentAndMaterial, cache.Min, cache.Max);
+
+                        var material = MyDefinitionManager.Static.GetVoxelMaterialDefinition(m_drillResult.Material);
+                        var amountRemoved = (float)removed * 3.9f * HARVEST_EFFICIENCY;
+                        var amountCubicMeters = (float)((amountRemoved / (float)MyVoxelConstants.VOXEL_CONTENT_FULL) * MyVoxelConstants.VOXEL_VOLUME_IN_METERS * MyDrillConstants.VOXEL_HARVEST_RATIO);
+                        amountCubicMeters *= (float)material.MinedOreRatio;
+
+                        // TODO: This whole creating a timer here and then removing it when it triggers is a bit
+                        // weird. Should probably replace it with a more straightforward solution
+                        var cooldown = (int)(amountCubicMeters / 0.37f * material.MinedOreRatio * 50f);
+                        m_timer = new TimerTicker(TimeSpan.FromSeconds(cooldown), () => {
+                            OnOreHarvested?.Invoke(mat, amountRemoved);
+                            m_drillResult.Clear();
+                            m_timer = null;
+                        });
+                        m_timer.Start();
+
+                        // Log.Info($"HARVEST_SERVER: {State.OperationState}, Mat: {m_drillResult.Material}, Removed: {removed}, readMat: {mat}");
+                        //OnOreHarvested?.Invoke(m_drillResult.Material, amountRemoved);
+                        // m_drillResult.Clear();
+                    }
+                }
+            }
+
+            m_task = null;
+        }
+
+        private Vector3I ReadVoxelData(StorageDataCache cache, Vector3I drillPosition, int padding = 1)
+        {
+            var cacheMin = drillPosition - padding;
+            var cacheMax = drillPosition + padding;
+
+            ReadVoxelData(cache, cacheMin, cacheMax);
+
+            return drillPosition - cacheMin;
+        }
+
+        private void ReadVoxelData(StorageDataCache cache, Vector3I min, Vector3I max)
+        {
+            ClampVoxelCoord(ref min);
+            ClampVoxelCoord(ref max);
+
+            cache.Resize(min, max);
+
+            var flags = MyVoxelRequestFlags.ConsiderContent;
+            m_voxelMap.Storage.ReadRange(cache, MyStorageDataTypeFlags.ContentAndMaterial, 0, min, max, ref flags);
+        }
+
+        private bool DrillInternal()
+        {
+            m_drillResult.Clear();
+
+            if (State.DrillPositionIndex > ComputeLinear(ref m_corners.Max, ref m_corners))
+            {
+                State.CurrentSlice = State.CurrentSlice.Translate(Vector3D.UnitZ);
+                if (DrillArea.Contains(State.CurrentSlice) == ContainmentType.Disjoint)
+                    return true;
+
+                InitWorkOnSlice();
+            }
+
+            ComputePosition(State.DrillPositionIndex, ref m_corners, out State.DrillPosition);
+
+            var relPos = State.DrillPosition - (m_corners.Min - 1);
+            //Log.Info($"{m_corners}, rel: {relPos}, drillPosIndex: {State.DrillPositionIndex}");
+            var content = m_cache.Content(ref relPos);
+            if (content == MyVoxelConstants.VOXEL_CONTENT_EMPTY)
+            {
+                State.DrillPositionIndex++;
+                return false;
+            }
+
+            var material = m_cache.Material(ref relPos);
+            var voxelMat = MyDefinitionManager.Static.GetVoxelMaterialDefinition(material);
+            // Log.Info($"Pos: {State.DrillPosition}, content: {content}, material: {material}, ore: {voxelMat.MinedOre}, filter: {OreFilter}");
+            if (material != MyVoxelConstants.NULL_MATERIAL && (OreFilter == "Any" || OreFilter == voxelMat.MinedOre))
+            {
+                var worldPosition = default(Vector3D);
+                MyVoxelCoordSystems.VoxelCoordToWorldPosition(m_voxelMap.PositionLeftBottomCorner, ref State.DrillPosition, out worldPosition);
+                
+                if (voxelMat.IsRare)
+                {
+                    var voxelPos = Vector3D.Transform(worldPosition, m_worldMatrixInverse);
+                    var volume = SignedDistanceToDensity((float)(Vector3D.Abs(voxelPos - State.CurrentSlice.Center) - (State.CurrentSlice.Center - State.CurrentSlice.Min)).Max());
+                    if (volume > 0f)
+                    {
+                        m_drillResult.Material = material;
+                        m_drillResult.Volume = volume;
+                        m_drillResult.DrillPosition = State.DrillPosition;
+                        m_drillResult.MinedOre = voxelMat.MinedOre;
+
+                        State.DrillPositionIndex++;
+                        return true;
+                    }
+                }
+            }
+
+            State.DrillPositionIndex++;
+            return false;
+        }
+
+        private void InitWorkOnSlice()
+        {
+            if (m_voxelMap == null)
+                return;
+
+            var worldBoundaries = State.CurrentSlice.TransformFast(m_worldMatrix);
+
+            Vector3I minCorner, maxCorner;
+            ComputeShapeBounds(ref worldBoundaries, out minCorner, out maxCorner);
+
+            m_corners = new BoundingBoxI(minCorner, maxCorner);
+
+            State.DrillPositionIndex = ComputeLinear(ref m_corners.Min, ref m_corners);
+            
+            ReadVoxelData(m_cache, minCorner - 1, maxCorner + 1);
+        }
+
+        private void ClampVoxelCoord(ref Vector3I voxelCoord, int distance = 1)
+        {
+            if (m_voxelMap.Storage != null)
+            {
+                var max = m_voxelMap.Storage.Size - distance;
+                Vector3I.Clamp(ref voxelCoord, ref Vector3I.Zero, ref max, out voxelCoord);
+            }
+        }
+
+        private void ComputeShapeBounds(ref BoundingBoxD shapeAabb, out Vector3I voxelMin, out Vector3I voxelMax)
+        {
+            MyVoxelCoordSystems.WorldPositionToVoxelCoord(m_voxelMap.PositionLeftBottomCorner, ref shapeAabb.Min, out voxelMin);
+            MyVoxelCoordSystems.WorldPositionToVoxelCoord(m_voxelMap.PositionLeftBottomCorner, ref shapeAabb.Max, out voxelMax);
+
+            voxelMin += m_voxelMap.StorageMin;
+            voxelMax += m_voxelMap.StorageMin + 1;
+            var storageSize = m_voxelMap.Storage.Size - 1;
+
+            Vector3I.Clamp(ref voxelMin, ref Vector3I.Zero, ref storageSize, out voxelMin);
+            Vector3I.Clamp(ref voxelMax, ref Vector3I.Zero, ref storageSize, out voxelMax);
+        }
+
+        private float SignedDistanceToDensity(float signedDistance)
+        {
+            return MathHelper.Clamp(0f - signedDistance, -1f, 1f) * 0.5f + 0.5f;
+        }
+
+        private int ComputeLinear(ref Vector3I p, ref BoundingBoxI bounding)
+        {
+            var offset = p - bounding.Min;
+            var sY = bounding.Size.X;
+            var sZ = bounding.Size.Y * sY;
+            return offset.X + offset.Y * sY + offset.Z * sZ;
+        }
+
+        public void ComputePosition(int linear, ref BoundingBoxI bounding, out Vector3I p)
+        {
+            var sY = bounding.Size.X;
+            var sZ = bounding.Size.Y * sY;
+            int x = linear % sY;
+            int y = (linear - x) % sZ / sY;
+            int z = (linear - x - y * sY) / sZ;
+            p = bounding.Min + new Vector3I(x, y, z);
+        }
+    }
+}

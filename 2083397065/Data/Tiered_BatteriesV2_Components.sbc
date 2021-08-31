@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Components>
+
+<Component>
+      <Id>
+        <TypeId>Component</TypeId>
+        <SubtypeId>AdvancedPowerCapacitorT-1</SubtypeId>
+      </Id>
+      <DisplayName>Advanced Power Capacitor: Tech-1</DisplayName>
+      <Icon>Textures\GUI\Icons\component\BatteryComponent.dds</Icon>
+      <Size>
+        <X>0.5</X>
+        <Y>0.3</Y>
+        <Z>0.3</Z>
+      </Size>
+      <Mass>5</Mass>
+      <Volume>45</Volume>
+      <Model>Models\Components\PowerCellComponent.mwm</Model>
+      <PhysicalMaterial>Metal</PhysicalMaterial>
+      <MaxIntegrity>50</MaxIntegrity>
+      <DropProbability>0.7</DropProbability>	  
+      <Health>19</Health>
+    </Component>
+
+<Component>
+      <Id>
+        <TypeId>Component</TypeId>
+        <SubtypeId>AdvancedPowerCapacitorT-2</SubtypeId>
+      </Id>
+      <DisplayName>Advanced Power Capacitor: Tech-2</DisplayName>
+      <Icon>Textures\GUI\Icons\component\BatteryComponent.dds</Icon>
+      <Size>
+        <X>0.5</X>
+        <Y>0.3</Y>
+        <Z>0.3</Z>
+      </Size>
+      <Mass>5</Mass>
+      <Volume>45</Volume>
+      <Model>Models\Components\PowerCellComponent.mwm</Model>
+      <PhysicalMaterial>Metal</PhysicalMaterial>
+      <MaxIntegrity>50</MaxIntegrity>
+      <DropProbability>0.7</DropProbability>
+      <Health>21</Health>
+    </Component>
+
+<Component>
+      <Id>
+        <TypeId>Component</TypeId>
+        <SubtypeId>AdvancedPowerCapacitorT-3</SubtypeId>
+      </Id>
+      <DisplayName>Advanced Power Capacitor: Tech-3</DisplayName>
+      <Icon>Textures\GUI\Icons\component\BatteryComponent.dds</Icon>
+      <Size>
+        <X>0.5</X>
+        <Y>0.3</Y>
+        <Z>0.3</Z>
+      </Size>
+      <Mass>5</Mass>
+      <Volume>45</Volume>
+      <Model>Models\Components\PowerCellComponent.mwm</Model>
+      <PhysicalMaterial>Metal</PhysicalMaterial>
+      <MaxIntegrity>50</MaxIntegrity>
+      <DropProbability>0.8</DropProbability>
+      <Health>25</Health>
+    </Component>
+	
+  </Components>
+</Definitions>

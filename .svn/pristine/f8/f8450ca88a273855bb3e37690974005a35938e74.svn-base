@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CubeBlocks>
+    <Definition xsi:type="MyObjectBuilder_VirtualMassDefinition">
+      <Id>
+        <TypeId>VirtualMass</TypeId>
+        <SubtypeId>AutoMiner</SubtypeId>
+      </Id>
+      <DisplayName>AutoMiner</DisplayName>
+      <Icon>Textures\GUI\Icons\Cubes\Autominer.png</Icon>
+      <Description>A device for getting rare ores out of the ground without actually drilling.</Description>
+      <CubeSize>Large</CubeSize>
+      <BlockTopology>TriangleMesh</BlockTopology>
+      <Size x="1" y="2" z="1" />
+      <ModelOffset x="0" y="0" z="0" />
+      <Model>Models\Autominer_Large.mwm</Model>
+      <Components>
+        <Component Subtype="SteelPlate" Count="110" />
+        <Component Subtype="Construction" Count="15" />
+        <Component Subtype="LargeTube" Count="12" />
+        <Component Subtype="Detector" Count="20" />
+        <Component Subtype="Computer" Count="50" />
+        <Component Subtype="SteelPlate" Count="10" />
+      </Components>
+      <CriticalComponent Subtype="Computer" Index="0" />
+      <MountPoints>
+        <MountPoint Side="Bottom" StartX="0.1" StartY="0.1" EndX="0.9" EndY="0.9" Default="true" />
+      </MountPoints>
+      <IsAirTight>false</IsAirTight>
+      <BuildProgressModels>
+        <Model BuildPercentUpperBound="0.50" File="Models\Autominer_Large_Constr1.mwm" />
+        <Model BuildPercentUpperBound="1.00" File="Models\Autominer_Large_Constr2.mwm" />
+      </BuildProgressModels>
+      <BlockPairName>AutoMiner</BlockPairName>
+      <EdgeType>Light</EdgeType>
+      <BuildTimeSeconds>22</BuildTimeSeconds>
+      <ResourceSourceGroup>Reactors</ResourceSourceGroup>
+      <ResourceSinkGroup>Charging</ResourceSinkGroup>
+      <VirtualMass>0</VirtualMass>
+      <RequiredPowerInput>0.56</RequiredPowerInput>
+      <DamageEffectName>Damage_HeavyMech_Damaged</DamageEffectName>
+      <DamagedSound>ParticleHeavyMech</DamagedSound>
+      <EmissiveColorPreset>GravityBlock</EmissiveColorPreset>
+      <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+      <DestroySound>WepSmallWarheadExpl</DestroySound>
+      <PCU>10</PCU>
+    </Definition>
+  </CubeBlocks>
+</Definitions>

@@ -1,0 +1,44 @@
+using System.Xml.Serialization;
+using ProtoBuf;
+
+namespace Vsi.AutoMiner
+{
+
+    [ProtoContract(SkipConstructor = true, UseProtoMembersOnly = true)]
+    public class AutoMinerState
+    {
+
+        private const int CurrentSettingsVersion = 1;
+      
+        [XmlElement]
+        public int Version { get; set; }
+
+        [ProtoMember(2), XmlElement]
+        public int MiningRadius { get; set; }
+
+        [ProtoMember(3), XmlElement]
+        public int MiningDepth { get; set; }
+
+        [ProtoMember(4), XmlElement]
+        public bool ShowMiningArea { get; set; }
+
+        [ProtoMember(6), XmlElement]
+        public AutoMinerDrill.DrillState DrillState { get; set; }
+
+        [ProtoMember(7), XmlElement]
+        public long TargetInventoryEntity {get; set; }
+
+        [ProtoMember(8), XmlElement]
+        public string SelectedOre {get; set; }
+
+        public AutoMinerState()
+        {
+            Version = CurrentSettingsVersion;
+            MiningRadius = 1000;
+            MiningDepth = 40000;
+            ShowMiningArea = false;
+            DrillState = new AutoMinerDrill.DrillState();
+            SelectedOre = "Any";
+        }
+    }
+}

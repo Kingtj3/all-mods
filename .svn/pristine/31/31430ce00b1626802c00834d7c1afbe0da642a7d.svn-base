@@ -1,0 +1,271 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Sandbox.ModAPI;
+
+namespace Vsi.Network
+{
+
+    public interface IMessage
+    {
+        int GetMessageId();
+        byte[] ToBytes();
+    }
+
+    public interface IEntityMessage : IMessage
+    {
+        long GetEntityId();
+    }
+
+    public abstract class MessageBase<T> : IMessage
+    {
+        public abstract int GetMessageId();
+
+        public byte[] ToBytes()
+        {
+            int id = GetMessageId();
+            byte[] bytes = BitConverter.GetBytes(id);
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(bytes);
+
+            return bytes.Concat(MyAPIGateway.Utilities.SerializeToBinary(this).AsEnumerable()).ToArray();
+        }
+
+        public static T FromBytes(byte[] message)
+        {
+            return MyAPIGateway.Utilities.SerializeFromBinary<T>(message.Skip(4).ToArray());
+        }
+    }
+
+    public abstract class EntityMessage<T> : MessageBase<T>, IEntityMessage
+    {
+        public abstract long EntityId { get; protected set; }
+
+        public long GetEntityId()
+        {
+            return EntityId;
+        }
+
+        public EntityMessage(long entityId)
+        {
+            EntityId = entityId;
+        }
+
+        protected EntityMessage()
+        {}
+    }
+
+    public static class Net
+    {
+        private static readonly ushort MESSAGE_ID = 31421;
+
+        private class MessageHandlers
+        {
+            public Func<byte[], IMessage> Ctor;
+            public List<MessageHandler> Handlers = new List<MessageHandler>();
+        }
+
+        private struct MessageHandler
+        {
+            public long EntityId;
+            public Action<IMessage> Handler;
+        }
+
+        private static Dictionary<int, MessageHandlers> m_messageHandlers = new Dictionary<int, MessageHandlers>();
+        private static bool m_registered;
+
+        public static bool IsClient
+        {
+            get
+            {
+                if (MyAPIGateway.Multiplayer != null && MyAPIGateway.Multiplayer.MultiplayerActive && MyAPIGateway.Utilities.IsDedicated)
+                {
+                    return !MyAPIGateway.Multiplayer.IsServer;
+                }
+
+                return true;
+            }
+        }
+
+        public static bool IsDedicated
+        {
+            get
+            {
+                return IsServer && !IsClient;
+            }
+        }
+
+        public static bool IsMultiplayer
+        {
+            get
+            {
+                return MyAPIGateway.Multiplayer != null && MyAPIGateway.Multiplayer.MultiplayerActive;
+            }
+        }
+
+        public static bool IsServer
+        {
+            get
+            {
+                if (MyAPIGateway.Multiplayer != null && MyAPIGateway.Multiplayer.MultiplayerActive)
+                    return MyAPIGateway.Multiplayer.IsServer;
+
+                return true;
+            }
+        }
+
+        public static void RegisterEntityMessageHandler<T>(int id, long entityId, Action<IMessage> handler) where T : MessageBase<T>
+        {
+            if (IsMultiplayer)
+                RegisterMessageHandler<T>(id, entityId, handler);
+
+            // Log.Debug($"Entity message handler {id} registered for entity {entityId}");
+        }
+
+        public static void RegisterMessageHandler<T>(int id, Action<IMessage> handler) where T : MessageBase<T>
+        {
+            if (IsMultiplayer)
+                RegisterMessageHandler<T>(id, 0, handler);
+        }
+
+        public static void SendMessageToOthers(IMessage message)
+        {
+            if (!IsMultiplayer)
+                return;
+
+            var entityId = (message is IEntityMessage) ? ((IEntityMessage)message).GetEntityId() : 0L;
+            MyAPIGateway.Multiplayer.SendMessageToOthers(MESSAGE_ID, message.ToBytes(), true);
+            //Log.Debug($"NET: Sending message {message.GetType().Name} to others, entity: {entityId}");
+        }
+
+        public static void SendMessageToPlayer(long playerId, IMessage message)
+        {
+            if (!IsMultiplayer)
+                return;
+
+            if (IsClient)
+                return;
+
+            ulong steamId = MyAPIGateway.Players.TryGetSteamId(playerId);
+
+            if (steamId != 0)
+            {
+                //Log.Debug($"NET: Sending message {message.GetType().Name} to player");
+                MyAPIGateway.Multiplayer.SendMessageTo(MESSAGE_ID, message.ToBytes(), steamId, true);
+            }
+        }
+
+        public static void SendMessageToServer(IMessage message)
+        {
+            if (!IsMultiplayer)
+                return;
+
+            if (IsServer)
+                return;
+
+            var entityId = (message is IEntityMessage) ? ((IEntityMessage)message).GetEntityId() : 0L;
+            MyAPIGateway.Multiplayer.SendMessageToServer(MESSAGE_ID, message.ToBytes(), true);
+            //Log.Debug($"NET: Sending message {message.GetType().Name} to server, entity: {entityId}");
+        }
+
+        public static void ShutDown()
+        {
+            MyAPIGateway.Multiplayer.UnregisterMessageHandler(MESSAGE_ID, OnMessage);
+
+            m_messageHandlers.Clear();
+        }
+
+        public static void UnregisterEntityMessageHandler(int messageId, long entityId)
+        {
+            if (!IsMultiplayer)
+                return;
+
+            MessageHandlers handlers;
+            if (m_messageHandlers.TryGetValue(messageId, out handlers))
+            {
+                for (var i = 0; i < handlers.Handlers.Count; i++)
+                {
+                    var messageHandler = handlers.Handlers[i];
+                    if (messageHandler.EntityId == entityId)
+                    {
+                        handlers.Handlers.RemoveAt(i);
+                        break;
+                    }
+                }
+            }
+        }
+
+        public static void UnregisterMessageHandler(int messageId, Action<IMessage> handler)
+        {
+            if (!IsMultiplayer)
+                return;
+
+            MessageHandlers handlers;
+            if (m_messageHandlers.TryGetValue(messageId, out handlers))
+            {
+                for (var i = 0; i < handlers.Handlers.Count; i++)
+                {
+                    var messageHandler = handlers.Handlers[i];
+                    if (messageHandler.Handler == handler)
+                    {
+                        handlers.Handlers.RemoveAt(i);
+                        break;
+                    }
+                }
+            }
+        }
+
+        private static void OnMessage(byte[] bytes)
+        {
+            var idBytes = new byte[] { bytes[0], bytes[1], bytes[2], bytes[3] };
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(idBytes);
+
+            var messageId = BitConverter.ToInt32(idBytes, 0);
+
+            MessageHandlers messageHandlers;
+            if (!m_messageHandlers.TryGetValue(messageId, out messageHandlers))
+                return;
+                
+            if (messageHandlers.Handlers.Count == 0)
+                return;
+
+            var ctor = messageHandlers.Ctor;
+            var message = ctor(bytes);
+            var entityId = 0L;
+
+            if (message is IEntityMessage)
+                entityId = ((IEntityMessage)message).GetEntityId();
+
+            // Log.Debug($"NET: message {message.GetType().Name} received for entity: {entityId}");
+
+            foreach (var handler in messageHandlers.Handlers)
+            {
+                if (handler.EntityId == 0 || handler.EntityId == entityId)
+                    handler.Handler(message);
+            }
+        }
+
+        private static void RegisterMessageHandler<T>(int id, long entityId, Action<IMessage> handler) where T : MessageBase<T>
+        {
+            lock(m_messageHandlers)
+            {
+                if (!m_registered)
+                {
+                    MyAPIGateway.Multiplayer.RegisterMessageHandler(MESSAGE_ID, OnMessage);
+                    m_registered = true;
+                }
+            }
+
+            MessageHandlers messageHandlers;
+            if (!m_messageHandlers.TryGetValue(id, out messageHandlers))
+            {
+                messageHandlers = new MessageHandlers();
+                messageHandlers.Ctor = (bytes) => MyAPIGateway.Utilities.SerializeFromBinary<T>(bytes.Skip(4).ToArray());
+                m_messageHandlers.Add(id, messageHandlers);
+            }
+
+            messageHandlers.Handlers.Add(new MessageHandler { EntityId = entityId, Handler = handler });
+        }
+    }
+}

@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Sandbox.ModAPI;
+using VRage;
+using VRage.Utils;
+using SpaceEquipmentLtd.Utils;
+
+namespace SpaceEquipmentLtd.Localization
+{
+   public static class LocalizationHelper
+   {
+      public static Dictionary<string, string> GetTexts(MyLanguagesEnum language, Dictionary<MyLanguagesEnum, Dictionary<string, string>> translations, Logging log = null)
+      {
+         var texts = new Dictionary<string, string>();
+
+         var fallbackTranslation = translations[MyLanguagesEnum.English]; //Should be a complete set (all possible entries)
+         Dictionary<string, string> requestedTranslation;
+         if (language == MyLanguagesEnum.English || !translations.TryGetValue(language, out requestedTranslation)) requestedTranslation = null;
+
+         foreach(var kv in fallbackTranslation)
+         {
+            string translation;
+            if (requestedTranslation == null || !requestedTranslation.TryGetValue(kv.Key, out translation))
+            {
+               if (language != MyLanguagesEnum.English && log != null && log.ShouldLog(Logging.Level.Error)) log.Write(Logging.Level.Error, "Missing translation in language={0} for key={1}", language, kv.Key);
+               translation = kv.Value;
+            }
+            texts.Add(kv.Key, translation);
+         }
+         return texts;
+      }
+
+      public static MyStringId GetStringId(Dictionary<string, string> texts, string key)
+      {
+         return MyStringId.GetOrCompute(texts[key]);
+      }
+   }
+}

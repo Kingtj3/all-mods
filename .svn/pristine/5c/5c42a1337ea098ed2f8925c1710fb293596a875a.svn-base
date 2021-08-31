@@ -1,0 +1,50 @@
+using System;
+using Sandbox.ModAPI;
+
+namespace Vsi.Utils
+{
+
+    public class TimerTicker
+    {
+
+        public TimeSpan TickInterval { get; private set; }
+
+        private TimeSpan m_tickInterval;
+        private readonly Action m_tickFunc;
+
+        private double m_lastTick;
+        private bool m_running;
+
+        public TimerTicker(TimeSpan tickInterval, Action tickFunction)
+        {
+            m_tickInterval = tickInterval;
+            m_tickFunc = tickFunction;
+        }
+
+        public void Start()
+        {
+            m_lastTick = MyAPIGateway.Session.ElapsedPlayTime.TotalSeconds;
+            m_running = true;
+        }
+
+        public void Stop()
+        {
+            m_running = false;
+        }
+
+        public void Tick()
+        {
+            if (!m_running || m_tickFunc == null)
+                return;
+
+            double elapsedSeconds = MyAPIGateway.Session.ElapsedPlayTime.TotalSeconds - m_lastTick;
+
+            if (m_tickInterval.TotalSeconds <= elapsedSeconds)
+            {
+                m_tickFunc();
+                m_lastTick = MyAPIGateway.Session.ElapsedPlayTime.TotalSeconds - (elapsedSeconds - m_tickInterval.TotalSeconds);
+            }
+        }
+    }
+
+}

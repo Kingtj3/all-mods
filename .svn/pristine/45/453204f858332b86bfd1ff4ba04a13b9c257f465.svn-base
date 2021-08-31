@@ -1,0 +1,371 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<CubeBlocks>
+
+<!-- Large Teir 1 battery -->
+
+<Definition xsi:type="MyObjectBuilder_BatteryBlockDefinition">
+      <Id>
+        <TypeId>BatteryBlock</TypeId>
+        <SubtypeId>Large_BatteryBlock_Tiered[T-1]</SubtypeId>
+      </Id>
+      <DisplayName>Tiered [T-1] Battery</DisplayName>
+      <Icon>Textures\GUI\Icons\Cubes\Battery.dds</Icon>
+	  <Description>Tiered [T-1] Battery: Total Stored Power of (50MW) with a Pre-Charge Power of (0MW) on a New Battery!</Description>
+      <CubeSize>Large</CubeSize>
+      <BlockTopology>TriangleMesh</BlockTopology>
+      <Size x="1" y="1" z="1" />
+      <ModelOffset x="0" y="0" z="0" />
+      <Model>Models\Cubes\Large\BatteryLarge.mwm</Model>
+      <Components>
+        <Component Subtype="SteelPlate" Count="35" />
+        <Component Subtype="Construction" Count="15" />
+        <Component Subtype="Superconductor" Count="10" />
+        <Component Subtype="AdvancedPowerCapacitorT-1" Count="25" />
+        <Component Subtype="Computer" Count="45" />
+        <Component Subtype="InteriorPlate" Count="10" />
+        <Component Subtype="Construction" Count="35" />
+        <Component Subtype="SteelPlate" Count="75" />
+      </Components>
+      <CriticalComponent Subtype="Computer" Index="0" />
+      <BuildProgressModels>
+        <Model BuildPercentUpperBound="0.33" File="Models\Cubes\Large\BatteryLargeConstruction_1.mwm" />
+        <Model BuildPercentUpperBound="0.66" File="Models\Cubes\Large\BatteryLargeConstruction_2.mwm" />
+        <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Large\BatteryLargeConstruction_3.mwm" />
+      </BuildProgressModels>
+      <BlockPairName>Tiered_[T-1]_BatteryBlock</BlockPairName>	  
+	  <BlockVariants>
+		<BlockVariant>
+			<TypeId>BatteryBlock</TypeId>
+			<SubtypeId>Large_BatteryBlock_Tiered[T-2]</SubtypeId>
+		</BlockVariant>
+		<BlockVariant>
+			<TypeId>BatteryBlock</TypeId>
+			<SubtypeId>Large_BatteryBlock_Tiered[T-3]</SubtypeId>
+		</BlockVariant>
+		<BlockVariant>
+			<TypeId>BatteryBlock</TypeId>
+			<SubtypeId>Large_BatteryBlock_Tiered[T-4]</SubtypeId>
+		</BlockVariant>
+		<BlockVariant>
+			<TypeId>BatteryBlock</TypeId>
+			<SubtypeId>Large_BatteryBlock_Tiered[T-5]</SubtypeId>
+		</BlockVariant>
+		<BlockVariant>
+			<TypeId>BatteryBlock</TypeId>
+			<SubtypeId>Large_BatteryBlock_Tiered[T-6]</SubtypeId>
+		</BlockVariant>
+	  </BlockVariants>
+      <EdgeType>Light</EdgeType>
+      <BuildTimeSeconds>45</BuildTimeSeconds>
+      <ResourceSourceGroup>Battery</ResourceSourceGroup>
+      <ResourceSinkGroup>BatteryBlock</ResourceSinkGroup> 
+      <AdaptibleInput>true</AdaptibleInput>
+      <MaxPowerOutput>50</MaxPowerOutput>
+      <RequiredPowerInput>50</RequiredPowerInput>
+      <MaxStoredPower>50</MaxStoredPower>
+      <InitialStoredPowerRatio>0</InitialStoredPowerRatio>
+      <InventorySize>
+        <X>1</X>
+        <Y>1</Y>
+        <Z>1</Z>
+      </InventorySize>
+      <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+      <DamagedSound>ParticleElectrical</DamagedSound>
+      <EmissiveColorPreset>Extended</EmissiveColorPreset>
+      <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+      <DestroySound>WepSmallWarheadExpl</DestroySound>
+	  <GuiVisible>true</GuiVisible>
+      <IsAirTight>true</IsAirTight>
+      <Public>true</Public>
+      <PCU>1</PCU>
+    </Definition>
+
+<Definition xsi:type="MyObjectBuilder_BatteryBlockDefinition">
+      <Id>
+        <TypeId>BatteryBlock</TypeId>
+        <SubtypeId>Large_BatteryBlock_Tiered[T-2]</SubtypeId>
+      </Id>
+      <DisplayName>Tiered [T-2] Battery</DisplayName>
+      <Icon>Textures\GUI\Icons\Cubes\Battery.dds</Icon>
+	  <Description>Tiered [T-2] Battery: Total Stored Power of (100MW) with a Pre-Charge Power of (0 MW) on a New Battery!</Description>
+      <CubeSize>Large</CubeSize>
+      <BlockTopology>TriangleMesh</BlockTopology>
+      <Size x="1" y="1" z="1" />
+      <ModelOffset x="0" y="0" z="0" />
+      <Model>Models\Cubes\Large\BatteryLarge.mwm</Model>
+      <Components>
+        <Component Subtype="SteelPlate" Count="50" />
+        <Component Subtype="Construction" Count="25" />
+        <Component Subtype="Superconductor" Count="20" />
+        <Component Subtype="AdvancedPowerCapacitorT-1" Count="35" />
+        <Component Subtype="Computer" Count="65" />
+        <Component Subtype="InteriorPlate" Count="20" />
+        <Component Subtype="Construction" Count="50" />
+        <Component Subtype="SteelPlate" Count="75" />
+      </Components>
+      <CriticalComponent Subtype="Computer" Index="0" />
+      <BuildProgressModels>
+        <Model BuildPercentUpperBound="0.33" File="Models\Cubes\Large\BatteryLargeConstruction_1.mwm" />
+        <Model BuildPercentUpperBound="0.66" File="Models\Cubes\Large\BatteryLargeConstruction_2.mwm" />
+        <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Large\BatteryLargeConstruction_3.mwm" />
+      </BuildProgressModels>
+      <BlockPairName>Tiered_[T-2]_BatteryBlock</BlockPairName>
+      <EdgeType>Light</EdgeType>
+      <BuildTimeSeconds>45</BuildTimeSeconds>
+      <ResourceSourceGroup>Battery</ResourceSourceGroup>
+      <ResourceSinkGroup>BatteryBlock</ResourceSinkGroup> 
+      <AdaptibleInput>true</AdaptibleInput>
+      <MaxPowerOutput>100</MaxPowerOutput>
+      <RequiredPowerInput>100</RequiredPowerInput>
+      <MaxStoredPower>100</MaxStoredPower>
+      <InitialStoredPowerRatio>0</InitialStoredPowerRatio>
+      <InventorySize>
+        <X>1</X>
+        <Y>1</Y>
+        <Z>1</Z>
+      </InventorySize>
+      <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+      <DamagedSound>ParticleElectrical</DamagedSound>
+      <EmissiveColorPreset>Extended</EmissiveColorPreset>
+      <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+      <DestroySound>WepSmallWarheadExpl</DestroySound>
+	  <GuiVisible>false</GuiVisible>
+      <IsAirTight>true</IsAirTight>
+      <Public>true</Public>
+      <PCU>1</PCU>
+    </Definition>
+    
+<Definition xsi:type="MyObjectBuilder_BatteryBlockDefinition">
+      <Id>
+        <TypeId>BatteryBlock</TypeId>
+        <SubtypeId>Large_BatteryBlock_Tiered[T-3]</SubtypeId>
+      </Id>
+      <DisplayName>Tiered [T-3] Battery</DisplayName>
+      <Icon>Textures\GUI\Icons\Cubes\Battery.dds</Icon>
+	  <Description>Tiered [T-3] Battery: Total Stored Power of (250MW) with a Pre-Charge Power of (0 MW) on a New Battery!</Description>
+      <CubeSize>Large</CubeSize>
+      <BlockTopology>TriangleMesh</BlockTopology>
+      <Size x="1" y="1" z="1" />
+      <ModelOffset x="0" y="0" z="0" />
+      <Model>Models\Cubes\Large\BatteryLarge.mwm</Model>
+      <Components>
+        <Component Subtype="SteelPlate" Count="75" />
+        <Component Subtype="Construction" Count="35" />
+        <Component Subtype="Detector" Count="5" />
+        <Component Subtype="Reactor" Count="25" />
+        <Component Subtype="Superconductor" Count="35" />
+        <Component Subtype="AdvancedPowerCapacitorT-2" Count="55" />
+        <Component Subtype="Computer" Count="100" />
+        <Component Subtype="InteriorPlate" Count="35" />
+        <Component Subtype="Construction" Count="100" />
+        <Component Subtype="SteelPlate" Count="115" />
+      </Components>
+      <CriticalComponent Subtype="Computer" Index="0" />
+      <BuildProgressModels>
+        <Model BuildPercentUpperBound="0.33" File="Models\Cubes\Large\BatteryLargeConstruction_1.mwm" />
+        <Model BuildPercentUpperBound="0.66" File="Models\Cubes\Large\BatteryLargeConstruction_2.mwm" />
+        <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Large\BatteryLargeConstruction_3.mwm" />
+      </BuildProgressModels>
+      <BlockPairName>Tiered_[T-3]_BatteryBlock</BlockPairName>
+      <EdgeType>Light</EdgeType>
+      <BuildTimeSeconds>45</BuildTimeSeconds>
+      <ResourceSourceGroup>Battery</ResourceSourceGroup>
+      <ResourceSinkGroup>BatteryBlock</ResourceSinkGroup> 
+      <AdaptibleInput>true</AdaptibleInput>
+      <MaxPowerOutput>250</MaxPowerOutput>
+      <RequiredPowerInput>250</RequiredPowerInput>
+      <MaxStoredPower>250</MaxStoredPower>
+      <InitialStoredPowerRatio>0</InitialStoredPowerRatio>
+      <InventorySize>
+        <X>1</X>
+        <Y>1</Y>
+        <Z>1</Z>
+      </InventorySize>
+       <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+      <DamagedSound>ParticleElectrical</DamagedSound>
+      <EmissiveColorPreset>Extended</EmissiveColorPreset>
+      <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+      <DestroySound>WepSmallWarheadExpl</DestroySound>
+	  <GuiVisible>false</GuiVisible>
+      <IsAirTight>true</IsAirTight>
+      <Public>true</Public>
+      <PCU>1</PCU>
+    </Definition>
+    
+<Definition xsi:type="MyObjectBuilder_BatteryBlockDefinition">
+      <Id>
+        <TypeId>BatteryBlock</TypeId>
+        <SubtypeId>Large_BatteryBlock_Tiered[T-4]</SubtypeId>
+      </Id>
+      <DisplayName>Tiered [T-4] Battery</DisplayName>
+      <Icon>Textures\GUI\Icons\Cubes\Battery.dds</Icon>
+	  <Description>Tiered [T-4] Battery: Total Stored Power of (500MW) with a Pre-Charge Power of (125MW) on a New Battery!</Description>
+      <CubeSize>Large</CubeSize>
+      <BlockTopology>TriangleMesh</BlockTopology>
+      <Size x="1" y="1" z="1" />
+      <ModelOffset x="0" y="0" z="0" />
+      <Model>Models\Cubes\Large\BatteryLarge.mwm</Model>
+      <Components>
+        <Component Subtype="SteelPlate" Count="100" />
+        <Component Subtype="Construction" Count="50" />
+        <Component Subtype="Detector" Count="25" />
+        <Component Subtype="Reactor" Count="35" />
+        <Component Subtype="Superconductor" Count="45" />
+        <Component Subtype="AdvancedPowerCapacitorT-2" Count="75" />
+        <Component Subtype="Computer" Count="175" />
+        <Component Subtype="InteriorPlate" Count="50" />
+        <Component Subtype="Construction" Count="125" />
+        <Component Subtype="SteelPlate" Count="125" />
+      </Components>
+      <CriticalComponent Subtype="Computer" Index="0" />
+      <BuildProgressModels>
+        <Model BuildPercentUpperBound="0.33" File="Models\Cubes\Large\BatteryLargeConstruction_1.mwm" />
+        <Model BuildPercentUpperBound="0.66" File="Models\Cubes\Large\BatteryLargeConstruction_2.mwm" />
+        <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Large\BatteryLargeConstruction_3.mwm" />
+      </BuildProgressModels>
+      <BlockPairName>Tiered_[T-4]_BatteryBlock</BlockPairName>
+      <EdgeType>Light</EdgeType>
+      <BuildTimeSeconds>45</BuildTimeSeconds>
+      <ResourceSourceGroup>Battery</ResourceSourceGroup>
+      <ResourceSinkGroup>BatteryBlock</ResourceSinkGroup> 
+      <AdaptibleInput>true</AdaptibleInput>
+      <MaxPowerOutput>500</MaxPowerOutput>
+      <RequiredPowerInput>500</RequiredPowerInput>
+      <MaxStoredPower>500</MaxStoredPower>
+      <InitialStoredPowerRatio>0.25</InitialStoredPowerRatio>
+      <InventorySize>
+        <X>1</X>
+        <Y>1</Y>
+        <Z>1</Z>
+      </InventorySize>
+      <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+      <DamagedSound>ParticleElectrical</DamagedSound>
+      <EmissiveColorPreset>Extended</EmissiveColorPreset>
+      <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+      <DestroySound>WepSmallWarheadExpl</DestroySound>
+	  <GuiVisible>false</GuiVisible>
+      <IsAirTight>true</IsAirTight>
+      <Public>true</Public>
+      <PCU>1</PCU>
+    </Definition>
+	
+<Definition xsi:type="MyObjectBuilder_BatteryBlockDefinition">
+      <Id>
+        <TypeId>BatteryBlock</TypeId>
+        <SubtypeId>Large_BatteryBlock_Tiered[T-5]</SubtypeId>
+      </Id>
+      <DisplayName>Tiered [T-5] Battery</DisplayName>
+      <Icon>Textures\GUI\Icons\Cubes\Battery.dds</Icon>
+	  <Description>Tiered [T-5] Battery: Total Stored Power of (1.0GW) with a Pre-Charge Power of (150MW) on a New Battery!</Description>
+      <CubeSize>Large</CubeSize>
+      <BlockTopology>TriangleMesh</BlockTopology>
+      <Size x="1" y="1" z="1" />
+      <ModelOffset x="0" y="0" z="0" />
+      <Model>Models\Cubes\Large\BatteryLarge.mwm</Model>
+      <Components>
+        <Component Subtype="SteelPlate" Count="125" />
+        <Component Subtype="Construction" Count="65" />
+        <Component Subtype="Detector" Count="25" />
+        <Component Subtype="Reactor" Count="50" />
+        <Component Subtype="Superconductor" Count="75" />
+        <Component Subtype="AdvancedPowerCapacitorT-3" Count="125" />
+        <Component Subtype="Computer" Count="150" />
+        <Component Subtype="InteriorPlate" Count="75" />
+        <Component Subtype="Construction" Count="120" />
+        <Component Subtype="SteelPlate" Count="125" />
+      </Components>
+      <CriticalComponent Subtype="Computer" Index="0" />
+      <BuildProgressModels>
+        <Model BuildPercentUpperBound="0.33" File="Models\Cubes\Large\BatteryLargeConstruction_1.mwm" />
+        <Model BuildPercentUpperBound="0.66" File="Models\Cubes\Large\BatteryLargeConstruction_2.mwm" />
+        <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Large\BatteryLargeConstruction_3.mwm" />
+      </BuildProgressModels>
+      <BlockPairName>Tiered_[T-5]_BatteryBlock</BlockPairName>
+      <EdgeType>Light</EdgeType>
+      <BuildTimeSeconds>45</BuildTimeSeconds>
+      <ResourceSourceGroup>Battery</ResourceSourceGroup>
+      <ResourceSinkGroup>BatteryBlock</ResourceSinkGroup> 
+      <AdaptibleInput>true</AdaptibleInput>
+      <MaxPowerOutput>1000</MaxPowerOutput>
+      <RequiredPowerInput>1000</RequiredPowerInput>
+      <MaxStoredPower>1000</MaxStoredPower>
+      <InitialStoredPowerRatio>0.15</InitialStoredPowerRatio>
+      <InventorySize>
+        <X>1</X>
+        <Y>1</Y>
+        <Z>1</Z>
+      </InventorySize>
+      <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+      <DamagedSound>ParticleElectrical</DamagedSound>
+      <EmissiveColorPreset>Extended</EmissiveColorPreset>
+      <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+      <DestroySound>WepSmallWarheadExpl</DestroySound>
+	  <GuiVisible>false</GuiVisible>
+      <IsAirTight>true</IsAirTight>
+      <Public>true</Public>
+      <PCU>1</PCU>
+    </Definition>
+	
+<Definition xsi:type="MyObjectBuilder_BatteryBlockDefinition">
+      <Id>
+        <TypeId>BatteryBlock</TypeId>
+        <SubtypeId>Large_BatteryBlock_Tiered[T-6]</SubtypeId>
+      </Id>
+      <DisplayName>Tiered [T-6] Battery</DisplayName>
+      <Icon>Textures\GUI\Icons\Cubes\Battery.dds</Icon>
+	  <Description>Tiered [T-6] Battery: Total Stored Power of (200GW) with a Pre-Charge Power of (300MW) on a New Battery!</Description>
+      <CubeSize>Large</CubeSize>
+      <BlockTopology>TriangleMesh</BlockTopology>
+      <Size x="1" y="1" z="1" />
+      <ModelOffset x="0" y="0" z="0" />
+      <Model>Models\Cubes\Large\BatteryLarge.mwm</Model>
+      <Components>
+        <Component Subtype="SteelPlate" Count="1500" />
+        <Component Subtype="Construction" Count="750" />
+        <Component Subtype="Detector" Count="350" />
+        <Component Subtype="Reactor" Count="500" />
+        <Component Subtype="Superconductor" Count="1200" />
+        <Component Subtype="AdvancedPowerCapacitorT-3" Count="1750" />
+        <Component Subtype="Computer" Count="1500" />
+        <Component Subtype="InteriorPlate" Count="1000" />
+        <Component Subtype="Construction" Count="1350" />
+        <Component Subtype="SteelPlate" Count="1300" />
+      </Components>
+      <CriticalComponent Subtype="Computer" Index="0" />
+      <BuildProgressModels>
+        <Model BuildPercentUpperBound="0.33" File="Models\Cubes\Large\BatteryLargeConstruction_1.mwm" />
+        <Model BuildPercentUpperBound="0.66" File="Models\Cubes\Large\BatteryLargeConstruction_2.mwm" />
+        <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Large\BatteryLargeConstruction_3.mwm" />
+      </BuildProgressModels>
+      <BlockPairName>Tiered_[T-6]_BatteryBlock</BlockPairName>
+      <EdgeType>Light</EdgeType>
+      <BuildTimeSeconds>45</BuildTimeSeconds>
+      <ResourceSourceGroup>Battery</ResourceSourceGroup>
+      <ResourceSinkGroup>BatteryBlock</ResourceSinkGroup> 
+      <AdaptibleInput>true</AdaptibleInput>
+      <MaxPowerOutput>10000</MaxPowerOutput>
+      <RequiredPowerInput>500</RequiredPowerInput>
+      <MaxStoredPower>200000</MaxStoredPower>
+      <InitialStoredPowerRatio>1</InitialStoredPowerRatio>
+      <InventorySize>
+        <X>1</X>
+        <Y>1</Y>
+        <Z>1</Z>
+      </InventorySize>
+      <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+      <DamagedSound>ParticleElectrical</DamagedSound>
+      <EmissiveColorPreset>Extended</EmissiveColorPreset>
+      <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+      <DestroySound>WepSmallWarheadExpl</DestroySound>
+	  <GuiVisible>false</GuiVisible>
+      <IsAirTight>true</IsAirTight>
+      <Public>true</Public>
+      <PCU>1</PCU>
+    </Definition>
+
+	
+
+	
+	</CubeBlocks>
+</Definitions>
