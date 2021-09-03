@@ -314,23 +314,23 @@
       </Id>
       <DisplayName>Tiered [T-6] Battery</DisplayName>
       <Icon>Textures\GUI\Icons\Cubes\Battery.dds</Icon>
-	  <Description>Tiered [T-6] Battery: Total Stored Power of (200GW) with a Pre-Charge Power of (300MW) on a New Battery!</Description>
+	  <Description>Tiered [T-6] Battery: Total Stored Power of (500GW) with a Pre-Charge Power of (500GW) on a New Battery!</Description>
       <CubeSize>Large</CubeSize>
       <BlockTopology>TriangleMesh</BlockTopology>
       <Size x="1" y="1" z="1" />
       <ModelOffset x="0" y="0" z="0" />
       <Model>Models\Cubes\Large\BatteryLarge.mwm</Model>
       <Components>
-        <Component Subtype="SteelPlate" Count="1500" />
-        <Component Subtype="Construction" Count="750" />
-        <Component Subtype="Detector" Count="350" />
-        <Component Subtype="Reactor" Count="500" />
-        <Component Subtype="Superconductor" Count="1200" />
-        <Component Subtype="AdvancedPowerCapacitorT-3" Count="1750" />
-        <Component Subtype="Computer" Count="1500" />
-        <Component Subtype="InteriorPlate" Count="1000" />
-        <Component Subtype="Construction" Count="1350" />
-        <Component Subtype="SteelPlate" Count="1300" />
+        <Component Subtype="SteelPlate" Count="15000" />
+        <Component Subtype="Construction" Count="7500" />
+        <Component Subtype="Detector" Count="3500" />
+        <Component Subtype="Reactor" Count="5000" />
+        <Component Subtype="Superconductor" Count="12000" />
+        <Component Subtype="AdvancedPowerCapacitorT-3" Count="17500" />
+        <Component Subtype="Computer" Count="15000" />
+        <Component Subtype="InteriorPlate" Count="10000" />
+        <Component Subtype="Construction" Count="13050" />
+        <Component Subtype="SteelPlate" Count="13000" />
       </Components>
       <CriticalComponent Subtype="Computer" Index="0" />
       <BuildProgressModels>
@@ -344,9 +344,9 @@
       <ResourceSourceGroup>Battery</ResourceSourceGroup>
       <ResourceSinkGroup>BatteryBlock</ResourceSinkGroup> 
       <AdaptibleInput>true</AdaptibleInput>
-      <MaxPowerOutput>10000</MaxPowerOutput>
+      <MaxPowerOutput>100000</MaxPowerOutput>
       <RequiredPowerInput>500</RequiredPowerInput>
-      <MaxStoredPower>200000</MaxStoredPower>
+      <MaxStoredPower>500000</MaxStoredPower>
       <InitialStoredPowerRatio>1</InitialStoredPowerRatio>
       <InventorySize>
         <X>1</X>
