@@ -23,8 +23,8 @@
 		  <Item Amount="0.0016339" TypeId="Ingot" SubtypeId="Silver" />
 		  <Item Amount="0.0003234" TypeId="Ingot" SubtypeId="Gold" />
 		  <Item Amount="0.0000313" TypeId="Ingot" SubtypeId="Platinum" />
-		  <Item Amount="0.0000045" TypeId="Ingot" SubtypeId="Uranium" />
-          <Item Amount="0.00000225" TypeId="Ingot" SubtypeId="LWTS_Titanium" />
+		  <Item Amount="0.00025" TypeId="Ingot" SubtypeId="Uranium" />
+          <Item Amount="0.00025" TypeId="Ingot" SubtypeId="LWTS_Titanium" />
 		  <!--		SUMS 0.80, for 20% simulated waste		-->
       </Results>
       <BaseProductionTimeInSeconds>0.02</BaseProductionTimeInSeconds>
@@ -51,8 +51,8 @@
 		  <Item Amount="0.0016339" TypeId="Ingot" SubtypeId="Silver" />
 		  <Item Amount="0.0003234" TypeId="Ingot" SubtypeId="Gold" />
 		  <Item Amount="0.0000313" TypeId="Ingot" SubtypeId="Platinum" />
-		  <Item Amount="0.0000045" TypeId="Ingot" SubtypeId="Uranium" />
-          <Item Amount="0.00000225" TypeId="Ingot" SubtypeId="LWTS_Titanium" />
+		  <Item Amount="0.00025" TypeId="Ingot" SubtypeId="Uranium" />
+          <Item Amount="0.00025" TypeId="Ingot" SubtypeId="LWTS_Titanium" />
 		  <!--		SUMS 0.17, for 83% simulated waste		-->	
       </Results>
       <BaseProductionTimeInSeconds>0.02</BaseProductionTimeInSeconds>
