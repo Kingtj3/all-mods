@@ -314,25 +314,25 @@
       </Id>
       <DisplayName>Tiered [T-6] Battery</DisplayName>
       <Icon>Textures\GUI\Icons\Cubes\Battery.dds</Icon>
-	  <Description>Tiered [T-6] Battery: Total Stored Power of (500GW) with a Pre-Charge Power of (500GW) on a New Battery!</Description>
+	  <Description>Tiered [T-6] Battery: Total Stored Power of (50000GW) with a Pre-Charge Power of (50000GW) on a New Battery!</Description>
       <CubeSize>Large</CubeSize>
       <BlockTopology>TriangleMesh</BlockTopology>
       <Size x="1" y="1" z="1" />
       <ModelOffset x="0" y="0" z="0" />
       <Model>Models\Cubes\Large\BatteryLarge.mwm</Model>
       <Components>
-        <Component Subtype="SteelPlate" Count="15000" />
-        <Component Subtype="Construction" Count="7500" />
-        <Component Subtype="Detector" Count="3500" />
-        <Component Subtype="Reactor" Count="5000" />
-        <Component Subtype="Superconductor" Count="12000" />
-        <Component Subtype="AdvancedPowerCapacitorT-3" Count="17500" />
-        <Component Subtype="Computer" Count="15000" />
-        <Component Subtype="InteriorPlate" Count="10000" />
-        <Component Subtype="Construction" Count="13050" />
-        <Component Subtype="SteelPlate" Count="13000" />
+        <Component Subtype="SteelPlate" Count="915000" />
+        <Component Subtype="Construction" Count="97500" />
+        <Component Subtype="Detector" Count="93500" />
+        <Component Subtype="Reactor" Count="95000" />
+        <Component Subtype="Superconductor" Count="912000" />
+        <Component Subtype="AdvancedPowerCapacitorT-3" Count="917500" />
+        <Component Subtype="Computer" Count="915000" />
+        <Component Subtype="InteriorPlate" Count="910000" />
+        <Component Subtype="Construction" Count="913050" />
+        <Component Subtype="SteelPlate" Count="913000" />
       </Components>
-      <CriticalComponent Subtype="Computer" Index="0" />
+      <CriticalComponent Subtype="Computer" Index="990" />
       <BuildProgressModels>
         <Model BuildPercentUpperBound="0.33" File="Models\Cubes\Large\BatteryLargeConstruction_1.mwm" />
         <Model BuildPercentUpperBound="0.66" File="Models\Cubes\Large\BatteryLargeConstruction_2.mwm" />
@@ -344,9 +344,9 @@
       <ResourceSourceGroup>Battery</ResourceSourceGroup>
       <ResourceSinkGroup>BatteryBlock</ResourceSinkGroup> 
       <AdaptibleInput>true</AdaptibleInput>
-      <MaxPowerOutput>100000</MaxPowerOutput>
+      <MaxPowerOutput>1000000</MaxPowerOutput>
       <RequiredPowerInput>500</RequiredPowerInput>
-      <MaxStoredPower>500000</MaxStoredPower>
+      <MaxStoredPower>500000000</MaxStoredPower>
       <InitialStoredPowerRatio>1</InitialStoredPowerRatio>
       <InventorySize>
         <X>1</X>
