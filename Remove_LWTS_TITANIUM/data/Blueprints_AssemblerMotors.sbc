@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Blueprints>
+    <Blueprint>
+      <Id>
+        <TypeId>BlueprintDefinition</TypeId>
+        <SubtypeId>LWTS_AssemblerMotorT5Component</SubtypeId>
+      </Id>
+      <DisplayName>Tier 5 Assembler Motor</DisplayName>
+      <Icon>Textures\GUI\Icons\component\AssemblerMotors\motor_component_t5.dds</Icon>
+      <Prerequisites>
+        <Item Amount="45.2" TypeId="Ingot" SubtypeId="Iron" />
+        <Item Amount="13.75" TypeId="Ingot" SubtypeId="Nickel" />
+        <Item Amount="13.75" TypeId="Ingot" SubtypeId="Silicon" />
+        <Item Amount="8.85" TypeId="Ingot" SubtypeId="Cobalt" />
+        <Item Amount="0.97" TypeId="Ingot" SubtypeId="Platinum" />
+      </Prerequisites>
+      <Result Amount="1" TypeId="Component" SubtypeId="LWTS_AssemblerMotorT5" />
+      <BaseProductionTimeInSeconds>9.1</BaseProductionTimeInSeconds>
+    </Blueprint>
+  </Blueprints>
+</Definitions>

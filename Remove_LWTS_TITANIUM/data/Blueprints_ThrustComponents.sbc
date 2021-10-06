@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Blueprints>
+    <Blueprint>
+      <Id>
+        <TypeId>BlueprintDefinition</TypeId>
+        <SubtypeId>ThrustT5Component</SubtypeId>
+      </Id>
+      <DisplayName>Tier 5 Thruster Components</DisplayName>
+      <Icon>Textures\GUI\Icons\component\thrust_components_component_t5.dds</Icon>
+      <Prerequisites>
+        <Item Amount="45" TypeId="Ingot" SubtypeId="Iron" />
+        <Item Amount="19" TypeId="Ingot" SubtypeId="Cobalt" />
+        <Item Amount="1.9" TypeId="Ingot" SubtypeId="Gold" />
+        <Item Amount="0.89" TypeId="Ingot" SubtypeId="Platinum" />
+        <Item Amount="3.6" TypeId="Ingot" SubtypeId="Nickel" />
+        <Item Amount="5.0" TypeId="Ingot" SubtypeId="Silicon" />
+        <Item Amount="0.11" TypeId="Ingot" SubtypeId="Uranium" />
+      </Prerequisites>
+      <Result Amount="1" TypeId="Component" SubtypeId="ThrustT5" />
+      <BaseProductionTimeInSeconds>6.5</BaseProductionTimeInSeconds>
+    </Blueprint>
+    <Blueprint>
+      <Id>
+        <TypeId>BlueprintDefinition</TypeId>
+        <SubtypeId>ThrustT6Component</SubtypeId>
+      </Id>
+      <DisplayName>Rare Thruster Components [Tier 6]</DisplayName>
+      <Icon>Textures\GUI\Icons\component\thrust_components_component_t6.dds</Icon>
+      <Prerequisites>
+	    <Item Amount="7.75" TypeId="Ingot" SubtypeId="LWTS_EliteShards" />
+        <Item Amount="47.5" TypeId="Ingot" SubtypeId="Iron" />
+        <Item Amount="21" TypeId="Ingot" SubtypeId="Cobalt" />
+        <Item Amount="2.8" TypeId="Ingot" SubtypeId="Gold" />
+        <Item Amount="0.93" TypeId="Ingot" SubtypeId="Platinum" />
+        <Item Amount="4.2" TypeId="Ingot" SubtypeId="Nickel" />
+        <Item Amount="5.6" TypeId="Ingot" SubtypeId="Silicon" />
+        <Item Amount="0.12" TypeId="Ingot" SubtypeId="Uranium" />
+      </Prerequisites>
+      <Result Amount="1" TypeId="Component" SubtypeId="ThrustT6" />
+      <BaseProductionTimeInSeconds>120</BaseProductionTimeInSeconds>
+    </Blueprint>
+    <Blueprint>
+      <Id>
+        <TypeId>BlueprintDefinition</TypeId>
+        <SubtypeId>ThrustT7Component</SubtypeId>
+      </Id>
+      <DisplayName>Legendary Thruster Components [Tier 7]</DisplayName>
+      <Icon>Textures\GUI\Icons\component\thrust_components_component_t7.dds</Icon>
+      <Prerequisites>
+	    <Item Amount="30" TypeId="Ingot" SubtypeId="LWTS_EliteShards" />
+        <Item Amount="50" TypeId="Ingot" SubtypeId="Iron" />
+        <Item Amount="22.5" TypeId="Ingot" SubtypeId="Cobalt" />
+        <Item Amount="3.2" TypeId="Ingot" SubtypeId="Gold" />
+        <Item Amount="0.95" TypeId="Ingot" SubtypeId="Platinum" />
+        <Item Amount="5.0" TypeId="Ingot" SubtypeId="Nickel" />
+        <Item Amount="6.2" TypeId="Ingot" SubtypeId="Silicon" />
+        <Item Amount="0.125" TypeId="Ingot" SubtypeId="Uranium" />
+      </Prerequisites>
+      <Result Amount="1" TypeId="Component" SubtypeId="ThrustT7" />
+      <BaseProductionTimeInSeconds>200</BaseProductionTimeInSeconds>
+    </Blueprint>
+  </Blueprints>
+</Definitions>

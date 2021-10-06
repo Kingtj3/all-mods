@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Blueprints>
+    	<Blueprint>
+      <Id>
+        <TypeId>BlueprintDefinition</TypeId>
+        <SubtypeId>LWTS_HeavyConstruction</SubtypeId>
+      </Id>
+      <DisplayName>Heavy Construction Components</DisplayName>
+      <Icon>Textures\GUI\Icons\component\armor_component.dds</Icon>
+      <Prerequisites>
+        <Item Amount="100" TypeId="Ingot" SubtypeId="Iron" />
+		<Item Amount="25.2" TypeId="Ingot" SubtypeId="Nickel" />
+		<Item Amount="18.2" TypeId="Ingot" SubtypeId="Cobalt" />
+		<Item Amount="5.7" TypeId="Ingot" SubtypeId="Gold" />
+      </Prerequisites>
+      <Result Amount="1" TypeId="Component" SubtypeId="LWTS_ConstructionArmored" />
+      <BaseProductionTimeInSeconds>8.33</BaseProductionTimeInSeconds>
+    </Blueprint>
+  </Blueprints>
+</Definitions>

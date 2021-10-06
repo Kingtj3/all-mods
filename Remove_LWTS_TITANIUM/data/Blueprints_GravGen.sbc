@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Blueprints>
+    <Blueprint>
+      <Id>
+        <TypeId>BlueprintDefinition</TypeId>
+        <SubtypeId>GravityGeneratorComponentT5</SubtypeId>
+      </Id>
+      <DisplayName>Tier 5 Gravity Generator Components</DisplayName>
+      <Icon>Textures\GUI\Icons\component\gravity_generator_components_component5.dds</Icon>
+      <Prerequisites>
+		<Item Amount="15.5" TypeId="Ingot" SubtypeId="Silver" />
+		<Item Amount="21.3" TypeId="Ingot" SubtypeId="Gold" />
+		<Item Amount="278" TypeId="Ingot" SubtypeId="Cobalt" />
+        <Item Amount="695" TypeId="Ingot" SubtypeId="Iron" />
+		<Item Amount="76.5" TypeId="Ingot" SubtypeId="Nickel" />
+		<Item Amount="40" TypeId="Ingot" SubtypeId="Silicon" />
+		<Item Amount="1.0" TypeId="Ingot" SubtypeId="Platinum" />
+       </Prerequisites>
+      <Result Amount="1" TypeId="Component" SubtypeId="LWTS_GravityGeneratorTier5" />
+      <BaseProductionTimeInSeconds>17.5</BaseProductionTimeInSeconds>
+    </Blueprint>
+  </Blueprints>
+</Definitions>
