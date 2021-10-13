@@ -965,8 +965,8 @@
       <DestroySound>WepSmallWarheadExpl</DestroySound>
       <GuiVisible>false</GuiVisible>
 	  <PCU>25</PCU>
-    </Definition>	
-	<Definition xsi:type="MyObjectBuilder_ReactorDefinition">
+	</Definition>
+    <Definition xsi:type="MyObjectBuilder_ReactorDefinition">
       <Id>
         <TypeId>Reactor</TypeId>
         <SubtypeId>LBFusionReactorT5</SubtypeId>
