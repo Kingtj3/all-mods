@@ -971,7 +971,7 @@
         <TypeId>Reactor</TypeId>
         <SubtypeId>LBFusionReactorT5</SubtypeId>
       </Id>
-      <DisplayName>3000GW Deuterium Fusion Reactor</DisplayName>
+      <DisplayName>300GW Deuterium Fusion Reactor</DisplayName>
       <Icon>Textures\GUI\Icons\Cubes\FusionReactor.dds</Icon>
       <CubeSize>Large</CubeSize>
       <BlockTopology>TriangleMesh</BlockTopology>
@@ -979,15 +979,15 @@
       <ModelOffset x="0" y="0" z="0" />
       <Model>Models\Cubes\LBFusionReactor.mwm</Model>
       <Components>
-        <Component Subtype="SteelPlate" Count="8000" />
-        <Component Subtype="Construction" Count="5000" />
-        <Component Subtype="MetalGrid" Count="600" />
-        <Component Subtype="LargeTube" Count="800" />
-        <Component Subtype="Computer" Count="5000" />
-        <Component Subtype="Superconductor" Count="6200" />
-        <Component Subtype="Magnetron_Component" Count="73000" />
-        <Component Subtype="Motor" Count="400" />
-        <Component Subtype="SteelPlate" Count="4000" />
+        <Component Subtype="SteelPlate" Count="800" />
+        <Component Subtype="Construction" Count="500" />
+        <Component Subtype="MetalGrid" Count="60" />
+        <Component Subtype="LargeTube" Count="80" />
+        <Component Subtype="Computer" Count="500" />
+        <Component Subtype="Superconductor" Count="600" />
+        <Component Subtype="Magnetron_Component" Count="7300" />
+        <Component Subtype="Motor" Count="40" />
+        <Component Subtype="SteelPlate" Count="400" />
       </Components>
       <CriticalComponent Subtype="Motor" Index="0" />
       <MountPoints>
@@ -1028,10 +1028,10 @@
       <MirroringZ>Y</MirroringZ>
       <EdgeType>Light</EdgeType>
       <BuildTimeSeconds>140</BuildTimeSeconds>
-      <Description>Deuterium Reactor that provides 3000 Gigawatts of power, also requires Deuterium Container to fuel.</Description>
+      <Description>Deuterium Reactor that provides 300 Gigawatts of power, also requires Deuterium Container to fuel.</Description>
 
       <ResourceSourceGroup>Reactors</ResourceSourceGroup>
-      <MaxPowerOutput>30000000</MaxPowerOutput>
+      <MaxPowerOutput>30000</MaxPowerOutput>
       <StockpileAmount>10</StockpileAmount>
 
       <EmissiveColorPreset>Default</EmissiveColorPreset>
