@@ -7,5 +7,9 @@
       <Id>2083398647</Id>
       <ServiceName>Steam</ServiceName>
     </WorkshopId>
-   </WorkshopIds>
+    <WorkshopId>
+      <Id>1336201</Id>
+      <ServiceName>mod.io</ServiceName>
+    </WorkshopId>
+  </WorkshopIds>
 </MyObjectBuilder_ModInfo>
