@@ -1031,8 +1031,8 @@
       <Description>Deuterium Reactor that provides 300 Gigawatts of power, also requires Deuterium Container to fuel.</Description>
 
       <ResourceSourceGroup>Reactors</ResourceSourceGroup>
-      <MaxPowerOutput>30000</MaxPowerOutput>
-      <StockpileAmount>10</StockpileAmount>
+      <MaxPowerOutput>300000</MaxPowerOutput>
+      <StockpileAmount>100</StockpileAmount>
 
       <EmissiveColorPreset>Default</EmissiveColorPreset>
       <ResourceSinkGroup>Factory</ResourceSinkGroup>
@@ -1177,8 +1177,8 @@
       <ResourceSinkGroup>Factory</ResourceSinkGroup>
       <InventoryMaxVolume>4</InventoryMaxVolume>
 	  <OreAmountPerPullRequest>1000</OreAmountPerPullRequest>
-      <RefineSpeed>1</RefineSpeed>
-      <MaterialEfficiency>1</MaterialEfficiency>
+      <RefineSpeed>40</RefineSpeed>
+      <MaterialEfficiency>6</MaterialEfficiency>
       <InventorySize>
         <X>2</X>
         <Y>2</Y>
@@ -1231,7 +1231,7 @@
       <Description>Queue-able Deuterium Processor to process ice, stone, and Deuterium into Deuterium Containers for use in the fusion reactors.</Description>
       <EdgeType>Light</EdgeType>
       <EmissiveColorPreset>Default</EmissiveColorPreset>
-      <BuildTimeSeconds>2</BuildTimeSeconds>
+      <BuildTimeSeconds>20</BuildTimeSeconds>
       <ResourceSinkGroup>Factory</ResourceSinkGroup>
       <InventoryMaxVolume>40</InventoryMaxVolume>
 	  <OreAmountPerPullRequest>1000</OreAmountPerPullRequest>
@@ -1246,7 +1246,7 @@
       <BlueprintClasses>
 		<Class>HeavyH2OIngots</Class>
       </BlueprintClasses>
-      <AssemblySpeed>1.0</AssemblySpeed>
+      <AssemblySpeed>0.2</AssemblySpeed>
       <DamageEffectId>212</DamageEffectId>
       <Description>Description_Refinery</Description>
 
