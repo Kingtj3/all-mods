@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CubeBlocks>
+
+    <Definition xsi:type="MyObjectBuilder_HydrogenEngineDefinition">
+      <Id>
+        <TypeId>HydrogenEngine</TypeId>
+        <SubtypeId>LargeOxygenEngine</SubtypeId>
+      </Id>
+      <DisplayName>Airbreathing Engine</DisplayName>
+      <Description>The airbreathing engine converts oxygen into power and has its own internal oxygen tank.
+
+Being able to be fueled through air vents, it is an excellent block for refueling airplanes between flights.</Description>
+      <Icon>Textures\GUI\Icons\Cubes\HydrogenEngineLarge.dds</Icon>
+      <CubeSize>Large</CubeSize>
+      <BlockTopology>TriangleMesh</BlockTopology>
+      <Size x="1" y="1" z="2" />
+      <ModelOffset x="0" y="0" z="0" />
+      <Model>Models\Cubes\Large\HydrogenEngine.mwm</Model>
+      <Components>
+        <Component Subtype="SteelPlate" Count="160" />
+        <Component Subtype="Construction" Count="120" />
+        <Component Subtype="LargeTube" Count="24" />
+        <Component Subtype="SmallTube" Count="40" />
+        <Component Subtype="Motor" Count="24" />
+        <Component Subtype="Computer" Count="8" />
+        <Component Subtype="PowerCell" Count="40" />
+        <Component Subtype="Construction" Count="20" />
+        <Component Subtype="SteelPlate" Count="40" />
+      </Components>
+      <CriticalComponent Subtype="PowerCell" Index="0" />
+      <MountPoints>
+        <MountPoint Side="Bottom" StartX="0.15" StartY="0.15" EndX="0.85" EndY="1.85" Default="true" />
+        <MountPoint Side="Front" StartX="0.15" StartY="0.15" EndX="0.85" EndY="0.85" />
+      </MountPoints>
+      <BuildProgressModels>
+        <Model BuildPercentUpperBound="0.33" File="Models\Cubes\Large\HydrogenEngine_Construction1.mwm" />
+        <Model BuildPercentUpperBound="0.66" File="Models\Cubes\Large\HydrogenEngine_Construction2.mwm" />
+        <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Large\HydrogenEngine_Construction3.mwm" />
+      </BuildProgressModels>
+      <BlockPairName>OxygenEngine</BlockPairName>
+      <MirroringY>Z</MirroringY>
+      <MirroringZ>Y</MirroringZ>
+      <EdgeType>Light</EdgeType>
+      <BuildTimeSeconds>120</BuildTimeSeconds>
+      <ResourceSinkGroup>Generators</ResourceSinkGroup>
+      <ResourceSourceGroup>Reactors</ResourceSourceGroup>
+      <MaxPowerOutput>200000</MaxPowerOutput>
+      <FuelCapacity>800000000</FuelCapacity>
+      <EmissiveColorPreset>Extended</EmissiveColorPreset>
+      <IsAirTight>false</IsAirTight>
+      <InventorySize>
+        <X>1</X>
+        <Y>1</Y>
+        <Z>1</Z>
+      </InventorySize>
+      <FuelInfos>
+        <FuelInfo>
+          <Id>
+            <TypeId>GasProperties</TypeId>
+            <SubtypeId>Oxygen</SubtypeId>
+          </Id>
+        </FuelInfo>
+      </FuelInfos>
+      <FuelProductionToCapacityMultiplier>0.00001</FuelProductionToCapacityMultiplier>
+      <PrimarySound>ArcBlockHydrogenEngine</PrimarySound>
+
+      <DamageEffectName>Damage_HeavyMech_Damaged</DamageEffectName>
+      <DamagedSound>ParticleHeavyMech</DamagedSound>
+      <DestroyEffect>Explosion_Warhead_02</DestroyEffect>
+      <DestroySound>WepSmallWarheadExpl</DestroySound>
+
+      <AnimationSpeed>5</AnimationSpeed>
+      <PistonAnimationMin>-0.15</PistonAnimationMin>
+      <PistonAnimationMax>0.01</PistonAnimationMax>
+      <PistonAnimationOffsets>
+        <float>0.5</float>
+        <float>0.0</float>
+        <float>0.0</float>
+        <float>0.0</float>
+        <float>0.5</float>
+        <float>0.0</float>
+        <float>0.5</float>
+        <float>0.5</float>
+        <float>0.0</float>
+        <float>0.5</float>
+      </PistonAnimationOffsets>
+      <AnimationSpinUpSpeed>5</AnimationSpinUpSpeed>
+      <AnimationSpinDownSpeed>5</AnimationSpinDownSpeed>
+      <PCU>50</PCU>      
+    </Definition>
+    <Definition xsi:type="MyObjectBuilder_HydrogenEngineDefinition">
+      <Id>
+        <TypeId>HydrogenEngine</TypeId>
+        <SubtypeId>SmallOxygenEngine</SubtypeId>
+      </Id>
+      <DisplayName>Airbreathing Engine</DisplayName>
+      <Description>The airbreathing engine converts oxygen into power and has its own internal oxygen tank.
+
+Being able to be fueled through air vents, it is an excellent block for refueling airplanes between flights.</Description>
+      <Icon>Textures\GUI\Icons\Cubes\HydrogenEngineSmall.dds</Icon>
+      <CubeSize>Small</CubeSize>
+      <BlockTopology>TriangleMesh</BlockTopology>
+      <Size x="3" y="2" z="2" />
+      <ModelOffset x="0" y="0" z="0" />
+      <Model>Models\Cubes\Small\HydrogenEngine.mwm</Model>
+      <Components>
+        <Component Subtype="SteelPlate" Count="40" />
+        <Component Subtype="Construction" Count="36" />
+        <Component Subtype="LargeTube" Count="8" />
+        <Component Subtype="SmallTube" Count="12" />
+        <Component Subtype="Motor" Count="8" />
+        <Component Subtype="Computer" Count="2" />
+        <Component Subtype="PowerCell" Count="20" />
+        <Component Subtype="Construction" Count="2" />
+        <Component Subtype="SteelPlate" Count="20" />
+      </Components>
+      <CriticalComponent Subtype="PowerCell" Index="0" />
+      <MountPoints>
+        <MountPoint Side="Right" StartX="0" StartY="0" EndX="2" EndY="1" />
+        <MountPoint Side="Left" StartX="0" StartY="0" EndX="2" EndY="1" />
+        <MountPoint Side="Bottom" StartX="0" StartY="0" EndX="3" EndY="2" Default="true" />
+        <MountPoint Side="Top" StartX="1" StartY="0" EndX="2" EndY="2" />
+        <MountPoint Side="Front" StartX="0" StartY="0" EndX="3" EndY="1" />
+        <MountPoint Side="Front" StartX="1" StartY="1" EndX="2" EndY="2" />
+        <MountPoint Side="Back" StartX="0" StartY="0" EndX="3" EndY="1" />
+        <MountPoint Side="Back" StartX="1" StartY="1" EndX="2" EndY="2" />
+      </MountPoints>
+      <BuildProgressModels>
+        <Model BuildPercentUpperBound="0.5" File="Models\Cubes\Small\HydrogenEngine_Construction1.mwm" />
+        <Model BuildPercentUpperBound="1.0" File="Models\Cubes\Small\HydrogenEngine_Construction2.mwm" />
+      </BuildProgressModels>
+      <BlockPairName>OxygenEngine</BlockPairName>
+      <MirroringY>Z</MirroringY>
+      <MirroringZ>Y</MirroringZ>
+      <EdgeType>Light</EdgeType>
+      <BuildTimeSeconds>80</BuildTimeSeconds>
+      <ResourceSinkGroup>Generators</ResourceSinkGroup>
+      <ResourceSourceGroup>Reactors</ResourceSourceGroup>
+      <MaxPowerOutput>2000</MaxPowerOutput>
+      <FuelCapacity>80000000</FuelCapacity>
+      <IsAirTight>false</IsAirTight>
+      <InventorySize>
+        <X>1</X>
+        <Y>1</Y>
+        <Z>1</Z>
+      </InventorySize>
+      <FuelInfos>
+        <FuelInfo>
+          <Id>
+            <TypeId>GasProperties</TypeId>
+            <SubtypeId>Oxygen</SubtypeId>
+          </Id>
+        </FuelInfo>
+      </FuelInfos>
+      <FuelProductionToCapacityMultiplier>0.0001</FuelProductionToCapacityMultiplier>
+      <PrimarySound>ArcBlockHydrogenEngine</PrimarySound>
+
+      <DamageEffectName>Damage_HeavyMech_Damaged</DamageEffectName>
+      <DamagedSound>ParticleHeavyMech</DamagedSound>
+      <DestroyEffect>Explosion_Warhead_02</DestroyEffect>
+      <DestroySound>WepSmallWarheadExpl</DestroySound>
+
+      <AnimationSpeed>20</AnimationSpeed>
+      <AnimationSpinUpSpeed>5</AnimationSpinUpSpeed>
+      <AnimationSpinDownSpeed>5</AnimationSpinDownSpeed>
+      <PCU>50</PCU>      
+    </Definition>
+  </CubeBlocks>
+</Definitions>
