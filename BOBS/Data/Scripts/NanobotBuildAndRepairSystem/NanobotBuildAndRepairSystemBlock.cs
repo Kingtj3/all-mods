@@ -60,7 +60,7 @@ namespace SpaceEquipmentLtd.NanobotBuildAndRepairSystem
       public const float GRINDER_AMOUNT_PER_SECOND = 40f;
       public const float WELDER_SOUND_VOLUME = 2f;
 
-      public static readonly int COLLECT_FLOATINGOBJECTS_SIMULTANEOUSLY = 50000;
+      public static readonly int COLLECT_FLOATINGOBJECTS_SIMULTANEOUSLY = 500;
 
       public static readonly MyDefinitionId ElectricityId = new MyDefinitionId(typeof(VRage.Game.ObjectBuilders.Definitions.MyObjectBuilder_GasProperties), "Electricity");
       private static readonly MyStringId RangeGridResourceId = MyStringId.GetOrCompute("WelderGrid");
