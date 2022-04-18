@@ -41,6 +41,7 @@
 
       <ResourceSourceGroup>Battery</ResourceSourceGroup>
       <ResourceSinkGroup>Factory</ResourceSinkGroup>
+	  <FuelCapacity>80000000000</FuelCapacity>
       <OperationalPowerConsumption>1</OperationalPowerConsumption>
       <StandbyPowerConsumption>0.010</StandbyPowerConsumption>
       <VentilationCapacityPerSecond>3000000000</VentilationCapacityPerSecond>
