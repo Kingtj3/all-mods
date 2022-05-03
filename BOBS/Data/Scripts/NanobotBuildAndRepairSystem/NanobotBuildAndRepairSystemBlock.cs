@@ -38,8 +38,8 @@ namespace SpaceEquipmentLtd.NanobotBuildAndRepairSystem
          Invalid = 0, NotReady = 1, Idle = 2, Welding = 3, NeedWelding = 4, MissingComponents = 5, Grinding = 6, NeedGrinding = 7, InventoryFull = 8, LimitsExceeded = 9
       }
 
-      public const int WELDER_RANGE_DEFAULT_IN_M = 2000; //*2 = AreaSize
-      public const int WELDER_RANGE_MAX_IN_M = 4000;
+      public const int WELDER_RANGE_DEFAULT_IN_M = 4000; //*2 = AreaSize
+      public const int WELDER_RANGE_MAX_IN_M = 8000;
       public const int WELDER_RANGE_MIN_IN_M = 2;
       public const int WELDER_OFFSET_DEFAULT_IN_M = 0;
       public const int WELDER_OFFSET_MAX_DEFAULT_IN_M = 150;
@@ -55,9 +55,9 @@ namespace SpaceEquipmentLtd.NanobotBuildAndRepairSystem
       public const float WELDER_TRANSPORTSPEED_METER_PER_SECOND_DEFAULT = 90f;
       public const float WELDER_TRANSPORTVOLUME_DIVISOR = 20f;
       public const float WELDER_TRANSPORTVOLUME_MAX_MULTIPLIER = 20f;
-      public const float WELDER_AMOUNT_PER_SECOND = 6f;
+      public const float WELDER_AMOUNT_PER_SECOND = 9f;
       public const float WELDER_MAX_REPAIR_BONE_MOVEMENT_SPEED = 1.2f;
-      public const float GRINDER_AMOUNT_PER_SECOND = 40f;
+      public const float GRINDER_AMOUNT_PER_SECOND = 90f;
       public const float WELDER_SOUND_VOLUME = 2f;
 
       public static readonly int COLLECT_FLOATINGOBJECTS_SIMULTANEOUSLY = 500;
