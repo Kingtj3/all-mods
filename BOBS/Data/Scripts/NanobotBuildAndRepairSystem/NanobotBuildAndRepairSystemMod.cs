@@ -26,6 +26,8 @@ namespace SpaceEquipmentLtd.NanobotBuildAndRepairSystem
    }
 
    /*Change log:
+   * V 2.1.6:
+   *     -Fix: Fixed issue with ResourceSink/Power after Heavy Industrie Update
    * V 2.1.5:
    *     -Fix: Edit priority list while multiple block are selected
    * V 2.1.4:
@@ -78,7 +80,7 @@ namespace SpaceEquipmentLtd.NanobotBuildAndRepairSystem
    [MySessionComponentDescriptor(MyUpdateOrder.BeforeSimulation)]
    public class NanobotBuildAndRepairSystemMod : MySessionComponentBase
    {
-      private const string Version = "V2.1.5 2020-04-12"
+      private const string Version = "V2.1.6 2021-08-29"
       ;
 
       private const string CmdKey = "/nanobars";

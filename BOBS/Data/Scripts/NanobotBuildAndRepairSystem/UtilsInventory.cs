@@ -80,6 +80,15 @@ namespace SpaceEquipmentLtd.Utils
       }
 
       /// <summary>
+      /// Checks if inventory is nearly full 
+      /// </summary>
+      public static bool IsNearlyFull(this IMyInventory destInventory, float percent)
+      {
+         float minRemainVolume = (float)destInventory.MaxVolume * percent;
+         return (float)(destInventory.MaxVolume - destInventory.CurrentVolume) <= minRemainVolume;
+      }
+
+      /// <summary>
       /// As long as ComputeAmountThatFits is not available for modding we have to try
       /// </summary>
       public static VRage.MyFixedPoint MaxItemsAddable(this IMyInventory destInventory, VRage.MyFixedPoint maxNeeded, MyItemType itemType)
@@ -199,8 +208,32 @@ namespace SpaceEquipmentLtd.Utils
          }
       }
 
+      public static VRage.MyFixedPoint AddMaxItemsWithCheck(this IMyInventory destInventory, VRage.MyFixedPoint maxNeededFP, MyObjectBuilder_PhysicalObject objectBuilder)
+      {
+         var contentId = objectBuilder.GetObjectId();
+         if (maxNeededFP <= 0)
+         {
+            return 0; //Amount to small
+         }
+
+         var maxPossible = destInventory.MaxFractionItemsAddable(maxNeededFP, contentId);
+         if (maxPossible > 0)
+         {
+            var amountBefore = destInventory.GetItemAmount(objectBuilder);
+            destInventory.AddItems(maxPossible, objectBuilder);
+            var amountAfter = destInventory.GetItemAmount(objectBuilder);
+            return amountAfter - amountBefore;
+         }
+         else
+         {
+            return 0;
+         }
+      }
+
+
       public static VRage.MyFixedPoint RemoveMaxItems(this IMyInventory srcInventory, VRage.MyFixedPoint maxRemoveFP, MyObjectBuilder_PhysicalObject objectBuilder)
       {
+         if (maxRemoveFP <= 0) return 0;
          var contentId = objectBuilder.GetObjectId();
          VRage.MyFixedPoint removedAmount = 0;
          if (!srcInventory.ContainItems(maxRemoveFP, objectBuilder))
@@ -212,7 +245,7 @@ namespace SpaceEquipmentLtd.Utils
             srcInventory.RemoveItemsOfType(maxRemoveFP, contentId, MyItemFlags.None, false);
             removedAmount = maxRemoveFP;
          }
-         return maxRemoveFP;
+         return removedAmount;
       }
 
       /// <summary>

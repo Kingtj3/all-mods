@@ -38,26 +38,26 @@ namespace SpaceEquipmentLtd.NanobotBuildAndRepairSystem
          Invalid = 0, NotReady = 1, Idle = 2, Welding = 3, NeedWelding = 4, MissingComponents = 5, Grinding = 6, NeedGrinding = 7, InventoryFull = 8, LimitsExceeded = 9
       }
 
-      public const int WELDER_RANGE_DEFAULT_IN_M = 4000; //*2 = AreaSize
-      public const int WELDER_RANGE_MAX_IN_M = 8000;
+      public const int WELDER_RANGE_DEFAULT_IN_M = 2000; //*2 = AreaSize
+      public const int WELDER_RANGE_MAX_IN_M = 4000;
       public const int WELDER_RANGE_MIN_IN_M = 2;
       public const int WELDER_OFFSET_DEFAULT_IN_M = 0;
-      public const int WELDER_OFFSET_MAX_DEFAULT_IN_M = 150;
+      public const int WELDER_OFFSET_MAX_DEFAULT_IN_M = 4000;
       public const int WELDER_OFFSET_MAX_IN_M = 2000;
 
-      public const float WELDING_GRINDING_MULTIPLIER_MIN = 0.401f;
+      public const float WELDING_GRINDING_MULTIPLIER_MIN = 1.001f;
       public const float WELDING_GRINDING_MULTIPLIER_MAX = 1000f;
 
       public const float WELDER_REQUIRED_ELECTRIC_POWER_STANDBY_DEFAULT = 0.02f / 1000; //20W
       public const float WELDER_REQUIRED_ELECTRIC_POWER_WELDING_DEFAULT = 2.0f / 1000; //2kW
       public const float WELDER_REQUIRED_ELECTRIC_POWER_GRINDING_DEFAULT = 1.5f / 1000; //1.5kW
       public const float WELDER_REQUIRED_ELECTRIC_POWER_TRANSPORT_DEFAULT = 10.0f / 1000; //10kW
-      public const float WELDER_TRANSPORTSPEED_METER_PER_SECOND_DEFAULT = 90f;
-      public const float WELDER_TRANSPORTVOLUME_DIVISOR = 20f;
-      public const float WELDER_TRANSPORTVOLUME_MAX_MULTIPLIER = 20f;
-      public const float WELDER_AMOUNT_PER_SECOND = 9f;
-      public const float WELDER_MAX_REPAIR_BONE_MOVEMENT_SPEED = 1.2f;
-      public const float GRINDER_AMOUNT_PER_SECOND = 90f;
+      public const float WELDER_TRANSPORTSPEED_METER_PER_SECOND_DEFAULT = 200f;
+      public const float WELDER_TRANSPORTVOLUME_DIVISOR = 10f;
+      public const float WELDER_TRANSPORTVOLUME_MAX_MULTIPLIER = 800f;
+      public const float WELDER_AMOUNT_PER_SECOND = 80f;
+      public const float WELDER_MAX_REPAIR_BONE_MOVEMENT_SPEED = 6.2f;
+      public const float GRINDER_AMOUNT_PER_SECOND = 400f;
       public const float WELDER_SOUND_VOLUME = 2f;
 
       public static readonly int COLLECT_FLOATINGOBJECTS_SIMULTANEOUSLY = 500;
@@ -97,9 +97,9 @@ namespace SpaceEquipmentLtd.NanobotBuildAndRepairSystem
       private TimeSpan _LastFriendlyDamageCleanup;
 
       private static readonly int MaxTransportEffects = 50;
-      private static int _ActiveTransportEffects = 50;
+      private static int _ActiveTransportEffects = 0;
       private static readonly int MaxWorkingEffects = 80;
-      private static int _ActiveWorkingEffects = 50;
+      private static int _ActiveWorkingEffects = 0;
 
       private MyEntity3DSoundEmitter _SoundEmitter;
       private MyEntity3DSoundEmitter _SoundEmitterWorking;
@@ -230,7 +230,7 @@ namespace SpaceEquipmentLtd.NanobotBuildAndRepairSystem
             if ((NanobotBuildAndRepairSystemMod.Settings.Welder.AllowedEffects & VisualAndSoundEffects.GrindingSoundEffect) == 0) _Sounds[(int)WorkingState.Grinding] = null;
          }
 
-         var resourceSink = _Welder.Components.Get<Sandbox.Game.EntityComponents.MyResourceSinkComponent>();
+         var resourceSink = _Welder.ResourceSink as Sandbox.Game.EntityComponents.MyResourceSinkComponent;
          if (resourceSink != null)
          {
             var electricPowerTransport = Settings.MaximumRequiredElectricPowerTransport;
@@ -314,13 +314,12 @@ namespace SpaceEquipmentLtd.NanobotBuildAndRepairSystem
          var required = 0f;
          if (_Welder.Enabled)
          {
-            if (MyAPIGateway.Session.IsServer && Mod.Log.ShouldLog(Logging.Level.Info)) Mod.Log.Write(Logging.Level.Info, "BuildAndRepairSystemBlock {0}: ComputeRequiredElectricPower Enabled", Logging.BlockName(_Welder, Logging.BlockNameOptions.None));
             required += Settings.MaximumRequiredElectricPowerStandby;
-            required += State.Welding ? Settings.MaximumRequiredElectricPowerWelding : 0f;
-            required += State.Grinding ? Settings.MaximumRequiredElectricPowerGrinding : 0f;
-            required += State.Transporting ? (Settings.SearchMode == SearchModes.Grids ? Settings.MaximumRequiredElectricPowerTransport / 10 : Settings.MaximumRequiredElectricPowerTransport) : 0f;
+            required += _PowerWelding || State.Welding ? Settings.MaximumRequiredElectricPowerWelding : 0f;
+            required += _PowerGrinding || State.Grinding ? Settings.MaximumRequiredElectricPowerGrinding : 0f;
+            required += _PowerTransporting || State.Transporting ? (Settings.SearchMode == SearchModes.Grids ? Settings.MaximumRequiredElectricPowerTransport / 10 : Settings.MaximumRequiredElectricPowerTransport) : 0f;
          }
-         if (MyAPIGateway.Session.IsServer && Mod.Log.ShouldLog(Logging.Level.Info)) Mod.Log.Write(Logging.Level.Info, "BuildAndRepairSystemBlock {0}: ComputeRequiredElectricPower {1}", Logging.BlockName(_Welder, Logging.BlockNameOptions.None), required);
+         if (MyAPIGateway.Session.IsServer && Mod.Log.ShouldLog(Logging.Level.Info)) Mod.Log.Write(Logging.Level.Info, "BuildAndRepairSystemBlock {0}: ComputeRequiredElectricPower Enabled={1} Required={1}", Logging.BlockName(_Welder, Logging.BlockNameOptions.None), _Welder.Enabled, required);
          return required;
       }
 
@@ -332,18 +331,29 @@ namespace SpaceEquipmentLtd.NanobotBuildAndRepairSystem
       private bool HasRequiredElectricPower(bool weld, bool grind, bool transport)
       {
          if (_Welder == null) return false;
+         if (_CreativeModeActive) return true;
+
          var enought = true;
-         var required = Settings.MaximumRequiredElectricPowerStandby;
-         required += weld ? Settings.MaximumRequiredElectricPowerWelding : 0f;
-         required += grind ? Settings.MaximumRequiredElectricPowerGrinding : 0f;
-         required += transport ? (Settings.SearchMode == SearchModes.Grids ? Settings.MaximumRequiredElectricPowerTransport / 10 : Settings.MaximumRequiredElectricPowerTransport) : 0f;
-         var resourceSink = _Welder.Components.Get<Sandbox.Game.EntityComponents.MyResourceSinkComponent>();
+         var changeWeld = false; var changeGrind = false;  var changeTransport = false;
+         if (weld && !_PowerWelding ) { _PowerWelding = true; changeWeld = true; }
+         if (grind && !_PowerGrinding) { _PowerGrinding = true; changeGrind = true; }
+         if (transport && !_PowerTransporting) { _PowerTransporting = true; changeTransport = true; }
+         var resourceSink = _Welder.ResourceSink as Sandbox.Game.EntityComponents.MyResourceSinkComponent;
          if (resourceSink != null)
          {
-            enought = resourceSink.SuppliedRatioByType(ElectricityId) == 1;
+            if (changeWeld || changeGrind || changeTransport) resourceSink.Update();
+            enought = resourceSink.IsPoweredByType(ElectricityId);
+            if (changeWeld || changeGrind || changeTransport)
+            {
+               if (changeWeld) _PowerWelding = false;
+               if (changeGrind) _PowerGrinding = false;
+               if (changeTransport) _PowerTransporting = false;
+               resourceSink.Update();
+            }
          }
-         if (Mod.Log.ShouldLog(Logging.Level.Info)) Mod.Log.Write(Logging.Level.Info, "BuildAndRepairSystemBlock {0}: HasRequiredElectricPower {1} / {2}", Logging.BlockName(_Welder, Logging.BlockNameOptions.None), enought, required);
-         return enought || _CreativeModeActive;
+         
+         if (Mod.Log.ShouldLog(Logging.Level.Info)) Mod.Log.Write(Logging.Level.Info, "BuildAndRepairSystemBlock {0}: HasRequiredElectricPower {1} ({2},{3},{4})", Logging.BlockName(_Welder, Logging.BlockNameOptions.None), enought, weld, grind, transport);
+         return enought;
       }
 
       /// <summary>
@@ -492,7 +502,7 @@ namespace SpaceEquipmentLtd.NanobotBuildAndRepairSystem
                      _PowerGrinding = State.Grinding;
                      _PowerTransporting = State.Transporting;
 
-                     var resourceSink = _Welder.Components.Get<Sandbox.Game.EntityComponents.MyResourceSinkComponent>();
+                     var resourceSink = _Welder.ResourceSink as Sandbox.Game.EntityComponents.MyResourceSinkComponent;
                      if (resourceSink != null)
                      {
                         resourceSink.Update();
@@ -2298,7 +2308,7 @@ namespace SpaceEquipmentLtd.NanobotBuildAndRepairSystem
          customInfo.Append(_Welder.SlimBlock.BlockDefinition.DisplayNameText);
          customInfo.Append(Environment.NewLine);
 
-         var resourceSink = _Welder.Components.Get<Sandbox.Game.EntityComponents.MyResourceSinkComponent>();
+         var resourceSink = _Welder.ResourceSink as Sandbox.Game.EntityComponents.MyResourceSinkComponent;
          if (resourceSink != null)
          {
             customInfo.Append(MyTexts.Get(MyStringId.GetOrCompute("BlockPropertiesText_MaxRequiredInput")));

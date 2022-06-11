@@ -5,10 +5,8 @@ using Sandbox.Game.Entities;
 using Sandbox.Game;
 using Sandbox.Definitions;
 using VRage.Game.ModAPI;
-using VRage.Game.Entity;
+using VRage.Game.Components;
 using VRageMath;
-using VRage.Game;
-
 
 namespace SpaceEquipmentLtd.Utils
 {
@@ -144,6 +142,12 @@ namespace SpaceEquipmentLtd.Utils
       /// <returns></returns>
       public static VRage.Game.MyRelationsBetweenPlayerAndBlock GetUserRelationToOwner(this IMyCubeGrid cubeGrid, long userId, bool ignoreCubeGridList = false)
       {
+         bool failed;
+         return GetUserRelationToOwner(cubeGrid, userId, ignoreCubeGridList, out failed);
+      }
+      public static VRage.Game.MyRelationsBetweenPlayerAndBlock GetUserRelationToOwner(this IMyCubeGrid cubeGrid, long userId, bool ignoreCubeGridList, out bool failed)
+      {
+         failed = false;
          var enemies = false;
          var neutral = false;
          try
@@ -168,13 +172,14 @@ namespace SpaceEquipmentLtd.Utils
                }
             } else if (!ignoreCubeGridList) {
                //E.G. the case if a landing gear is directly attatched to piston/rotor (with no ownable block in the same subgrid) and the gear gets connected to something
-               var cubegridsList = MyAPIGateway.GridGroups.GetGroup(cubeGrid, GridLinkTypeEnum.Mechanical);
+               var cubegridsList = new List<IMyCubeGrid>();
+               MyAPIGateway.GridGroups.GetGroup(cubeGrid, GridLinkTypeEnum.Mechanical, cubegridsList);
                if (cubegridsList != null)
                {
                   foreach (var cubeGrid1 in cubegridsList)
                   {
                      if (cubeGrid1 == cubeGrid) continue;
-                     var relation = cubeGrid1.GetUserRelationToOwner(userId, true); //Do not recurse as this list is already complete
+                     var relation = cubeGrid1.GetUserRelationToOwner(userId, true, out failed); //Do not recurse as this list is already complete
                      if (relation == VRage.Game.MyRelationsBetweenPlayerAndBlock.Owner || relation == VRage.Game.MyRelationsBetweenPlayerAndBlock.FactionShare)
                      {
                         return relation;
@@ -193,6 +198,7 @@ namespace SpaceEquipmentLtd.Utils
          }
          catch {
             //The list BigOwners could change while iterating -> a silent catch
+            failed = (!enemies && !neutral); //Mark as fail if not any high prior ownership is allready set
          }
          if (enemies) return VRage.Game.MyRelationsBetweenPlayerAndBlock.Enemies;
          if (neutral) return VRage.Game.MyRelationsBetweenPlayerAndBlock.Neutral;
@@ -207,6 +213,12 @@ namespace SpaceEquipmentLtd.Utils
       /// <returns></returns>
       public static VRage.Game.MyRelationsBetweenPlayerAndBlock GetUserRelationToOwner(this IMySlimBlock slimBlock, long userId)
       {
+         bool failed;
+         return GetUserRelationToOwner(slimBlock, userId, out failed);
+      }
+      public static VRage.Game.MyRelationsBetweenPlayerAndBlock GetUserRelationToOwner(this IMySlimBlock slimBlock, long userId, out bool failed)
+      {
+         failed = false;
          if (slimBlock == null) return VRage.Game.MyRelationsBetweenPlayerAndBlock.NoOwnership;
          var fatBlock = slimBlock.FatBlock;
          if (fatBlock != null)
@@ -214,15 +226,20 @@ namespace SpaceEquipmentLtd.Utils
             var relation = fatBlock.GetUserRelationToOwner(userId);
             if (relation == VRage.Game.MyRelationsBetweenPlayerAndBlock.NoOwnership)
             {
-               relation = GetUserRelationToOwner(slimBlock.CubeGrid, userId);
+               relation = GetUserRelationToOwner(slimBlock.CubeGrid, userId, false, out failed);
                return relation;
             }
             else return relation;
          }
          else
          {
-            return GetUserRelationToOwner(slimBlock.CubeGrid, userId);
+            return GetUserRelationToOwner(slimBlock.CubeGrid, userId, false, out failed);
          }
+      }
+
+      public static VRage.MyFixedPoint AsFloorMyFixedPoint(this double value)
+      {
+         return new VRage.MyFixedPoint() { RawValue = (long)(value * 1000000L) };
       }
 
       public static VRage.MyFixedPoint AsFloorMyFixedPoint(this float value)
