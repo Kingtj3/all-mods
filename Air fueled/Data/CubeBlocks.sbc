@@ -46,7 +46,7 @@ Being able to be fueled through air vents, it is an excellent block for refuelin
       <ResourceSinkGroup>Generators</ResourceSinkGroup>
       <ResourceSourceGroup>Reactors</ResourceSourceGroup>
       <MaxPowerOutput>2000</MaxPowerOutput>
-      <FuelCapacity>8000000</FuelCapacity>
+      <FuelCapacity>8000000000</FuelCapacity>
       <EmissiveColorPreset>Extended</EmissiveColorPreset>
       <IsAirTight>false</IsAirTight>
       <InventorySize>
@@ -62,7 +62,7 @@ Being able to be fueled through air vents, it is an excellent block for refuelin
           </Id>
         </FuelInfo>
       </FuelInfos>
-      <FuelProductionToCapacityMultiplier>0.00001</FuelProductionToCapacityMultiplier>
+      <FuelProductionToCapacityMultiplier>0.005</FuelProductionToCapacityMultiplier>
       <PrimarySound>ArcBlockHydrogenEngine</PrimarySound>
 
       <DamageEffectName>Damage_HeavyMech_Damaged</DamageEffectName>
@@ -138,7 +138,7 @@ Being able to be fueled through air vents, it is an excellent block for refuelin
       <ResourceSinkGroup>Generators</ResourceSinkGroup>
       <ResourceSourceGroup>Reactors</ResourceSourceGroup>
       <MaxPowerOutput>2000</MaxPowerOutput>
-      <FuelCapacity>80000000</FuelCapacity>
+      <FuelCapacity>8000000000</FuelCapacity>
       <IsAirTight>false</IsAirTight>
       <InventorySize>
         <X>1</X>
@@ -153,7 +153,7 @@ Being able to be fueled through air vents, it is an excellent block for refuelin
           </Id>
         </FuelInfo>
       </FuelInfos>
-      <FuelProductionToCapacityMultiplier>0.00001</FuelProductionToCapacityMultiplier>
+      <FuelProductionToCapacityMultiplier>0.005</FuelProductionToCapacityMultiplier>
       <PrimarySound>ArcBlockHydrogenEngine</PrimarySound>
 
       <DamageEffectName>Damage_HeavyMech_Damaged</DamageEffectName>
