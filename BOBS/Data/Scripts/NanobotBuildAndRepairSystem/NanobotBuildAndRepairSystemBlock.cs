@@ -38,11 +38,11 @@ namespace SpaceEquipmentLtd.NanobotBuildAndRepairSystem
          Invalid = 0, NotReady = 1, Idle = 2, Welding = 3, NeedWelding = 4, MissingComponents = 5, Grinding = 6, NeedGrinding = 7, InventoryFull = 8, LimitsExceeded = 9
       }
 
-      public const int WELDER_RANGE_DEFAULT_IN_M = 2000; //*2 = AreaSize
-      public const int WELDER_RANGE_MAX_IN_M = 4000;
+      public const int WELDER_RANGE_DEFAULT_IN_M = 1000; //*2 = AreaSize
+      public const int WELDER_RANGE_MAX_IN_M = 2000;
       public const int WELDER_RANGE_MIN_IN_M = 2;
       public const int WELDER_OFFSET_DEFAULT_IN_M = 0;
-      public const int WELDER_OFFSET_MAX_DEFAULT_IN_M = 4000;
+      public const int WELDER_OFFSET_MAX_DEFAULT_IN_M = 2000;
       public const int WELDER_OFFSET_MAX_IN_M = 2000;
 
       public const float WELDING_GRINDING_MULTIPLIER_MIN = 1.001f;
