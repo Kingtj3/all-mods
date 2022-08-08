@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <BlueprintClassEntries>
+    <!-- Large Graphene Cubes -->
+    <Entry BlueprintSubtypeId="CubeBlock/L_Graphene_Armor_Block" Class="LargeBlocks"/>
+    <Entry BlueprintSubtypeId="CubeBlock/L_Graphene_Armor_Slope" Class="LargeBlocks"/>
+    <Entry BlueprintSubtypeId="CubeBlock/L_Graphene_Armor_Corner" Class="LargeBlocks"/>
+    <Entry BlueprintSubtypeId="CubeBlock/L_Graphene_Armor_InvCorner" Class="LargeBlocks"/>
+    <Entry BlueprintSubtypeId="CubeBlock/Graphene_Stairs" Class="LargeBlocks"/>
+    <Entry BlueprintSubtypeId="CubeBlock/Graphene_Ramp" Class="LargeBlocks"/>
+    <Entry BlueprintSubtypeId="CubeBlock/GrapheneArmorBlastCorner" Class="LargeBlocks"/>
+    <Entry BlueprintSubtypeId="CubeBlock/GrapheneArmorBlastInvCorner" Class="LargeBlocks"/>
+    <Entry BlueprintSubtypeId="CubeBlock/GrapheneArmorBlastCenter" Class="LargeBlocks"/>
+    <Entry BlueprintSubtypeId="CubeBlock/GrapheneArmorBlastSide" Class="LargeBlocks"/>
+    <!-- Small Graphene Cubes -->
+    <Entry Class="SmallBlocks" BlueprintSubtypeId="CubeBlock/S_GrapheneArmorBlastCenter" />
+    <Entry Class="SmallBlocks" BlueprintSubtypeId="CubeBlock/S_GrapheneArmorBlastCorner" />
+    <Entry Class="SmallBlocks" BlueprintSubtypeId="CubeBlock/S_GrapheneArmorBlastInvCorner" />
+    <Entry Class="SmallBlocks" BlueprintSubtypeId="CubeBlock/S_GrapheneArmorBlastSide" />
+    <Entry Class="SmallBlocks" BlueprintSubtypeId="CubeBlock/S_Graphene_Armor_Block" />
+    <Entry Class="SmallBlocks" BlueprintSubtypeId="CubeBlock/S_Graphene_Armor_Slope" />
+    <Entry Class="SmallBlocks" BlueprintSubtypeId="CubeBlock/S_Graphene_Armor_Corner" />
+    <Entry Class="SmallBlocks" BlueprintSubtypeId="CubeBlock/S_Graphene_Heavy_Armor_InvCorner" />
+
+    <!-- Graphene Special Items -->
+    <Entry BlueprintSubtypeId="CubeBlock/GrapheneSlimCube" Class="LargeBlocks"/>
+    <Entry BlueprintSubtypeId="CubeBlock/Graphene_Catwalk_Plate" Class="LargeBlocks"/>
+    <Entry BlueprintSubtypeId="CargoContainer/GrapheneCargoContainer" Class="LargeBlocks"/>
+  
+    <!-- Graphene Drills -->
+    <Entry BlueprintSubtypeId="Drill/LargeGrapheneHeavyDrill" Class="LargeBlocks"/>
+    <Entry BlueprintSubtypeId="Drill/SmallGrapheneHeavyDrill" Class="SmallBlocks"/>
+    <!-- Graphene Power -->
+    <Entry BlueprintSubtypeId="BatteryBlock/LargeGrapheneSuperCapacitor" Class="LargeBlocks"/>
+    <Entry BlueprintSubtypeId="BatteryBlock/SmallGrapheneSupercapacitor" Class="SmallBlocks"/>
+    <Entry BlueprintSubtypeId="Reactor/LgBlockSmGenerator" Class="LargeBlocks"/>
+    <Entry BlueprintSubtypeId="Reactor/LgBlockLgGenerator" Class="LargeBlocks"/>
+    <Entry BlueprintSubtypeId="Reactor/SmBlockSmGenerator" Class="SmallBlocks"/>
+    <Entry BlueprintSubtypeId="Reactor/SmBlockLgGenerator" Class="SmallBlocks"/>
+    <!-- Graphene Radio -->
+    <Entry BlueprintSubtypeId="RadioAntenna/OmnidirectionalAntennaLarge" Class="LargeBlocks"/>
+    <Entry BlueprintSubtypeId="RadioAntenna/OmnidirectionalAntennaSmall" Class="SmallBlocks"/>
+    <!-- Graphene Hydrogen and Oxygen Bottles -->
+    <Entry BlueprintSubtypeId="GrapheneOxygenBottle" Class="Tools"/>
+    <Entry BlueprintSubtypeId="GrapheneHydrogenBottle" Class="Tools"/>
+    <Entry BlueprintSubtypeId="GrapheneOxygenBottle" Class="EliteTools"/>
+    <Entry BlueprintSubtypeId="GrapheneHydrogenBottle" Class="EliteTools"/>
+2    <Entry Class="OxygenBottles" BlueprintSubtypeId="GrapheneOxygenBottlesRefill" />
+    <Entry Class="HydrogenBottles" BlueprintSubtypeId="GrapheneHydrogenBottlesRefill" />
+
+
+    <!-- Graphene Components / Ingots / Electronics / Recipes -->
+    <Entry BlueprintSubtypeId="GraphenePlate" Class="Components"/>
+    <Entry BlueprintSubtypeId="GrapheneNanotubes" Class="Components"/>
+    <Entry BlueprintSubtypeId="GrapheneAerogelFilling" Class="Components"/>
+    <Entry BlueprintSubtypeId="GraphenePowerCell" Class="Components"/>
+    <Entry BlueprintSubtypeId="CarbonOreToGraphite" Class="Ingots"/>
+    <Entry BlueprintSubtypeId="CarbonOreToGraphite" Class="Solids"/>
+    <!-- START Independent Survival Mod Compatibility  
+    <Entry Class="SuitRefinery" BlueprintSubtypeId="CarbonOreToGraphite" />
+    <Entry Class="SuitAssembler" BlueprintSubtypeId="GraphenePlate" />
+    <Entry Class="SuitAssembler" BlueprintSubtypeId="GrapheneAerogelFilling" />
+    <Entry Class="SuitAssembler" BlueprintSubtypeId="GrapheneNanotubes" />
+    <Entry Class="OxygenBottles" BlueprintSubtypeId="GrapheneOxygenBottlesRefill" />
+    <Entry Class="HydrogenBottles" BlueprintSubtypeId="GrapheneHydrogenBottlesRefill" />
+    END Independent Survival Mod Compatibility -->
+  </BlueprintClassEntries>
+</Definitions>

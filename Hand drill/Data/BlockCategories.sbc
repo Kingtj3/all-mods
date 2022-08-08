@@ -1,0 +1,114 @@
+<?xml version="1.0"  encoding="utf-8"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CategoryClasses>
+    <!-- Start ALL Graphene Blocks Category in 'G' Menu -->
+    <Category xsi:type="MyObjectBuilder_GuiBlockCategoryDefinition">
+      <Id>
+        <TypeId>GuiBlockCategoryDefinition</TypeId>
+        <SubtypeId/>
+      </Id>
+      <DisplayName>+ Graphene Armor</DisplayName>
+      <Name>GrapheneArmor</Name>
+      <ItemIds>
+        <string>CubeBlock/GrapheneArmorBlastCenter</string>
+        <string>CubeBlock/GrapheneArmorBlastCorner</string>
+        <string>CubeBlock/GrapheneArmorBlastInvCorner</string>
+        <string>CubeBlock/GrapheneArmorBlastSide</string>
+        <string>CubeBlock/L_Graphene_Armor_Block</string>
+        <string>CubeBlock/GrapheneSlimCube</string>
+        <string>CubeBlock/Graphene_Catwalk_Plate</string>
+        <string>CubeBlock/Graphene_Stairs</string>
+        <string>CubeBlock/Graphene_Ramp</string>
+        <string>CargoContainer/GrapheneCargoContainer</string>
+        <string>Drill/LargeGrapheneHeavyDrill</string>
+        <string>Drill/SmallGrapheneHeavyDrill</string>
+        <string>BatteryBlock/LargeGrapheneSuperCapacitor</string>
+        <string>BatteryBlock/SmallGrapheneSuperCapacitor</string>
+        <string>RadioAntenna/OmnidirectionalAntennaLarge</string>
+      </ItemIds>
+    </Category>
+    <!-- Start Power Category in 'G' Menu -->
+    <Category xsi:type="MyObjectBuilder_GuiBlockCategoryDefinition">
+      <Id>
+        <TypeId>GuiBlockCategoryDefinition</TypeId>
+        <SubtypeId/>
+      </Id>
+      <DisplayName>DisplayName_Category_Power</DisplayName>
+      <Name>Power</Name>
+      <ItemIds>
+        <string>BatteryBlock/LargeGrapheneSuperCapacitor</string>
+      </ItemIds>
+    </Category>
+    <!-- Start Ship Weapons/Tools Category in 'G' Menu -->
+    <Category xsi:type="MyObjectBuilder_GuiBlockCategoryDefinition">
+      <Id>
+        <TypeId>GuiBlockCategoryDefinition</TypeId>
+        <SubtypeId/>
+      </Id>
+      <DisplayName>DisplayName_Category_ShipWeaponsTools</DisplayName>
+      <Name>WeaponsTools</Name>
+      <SearchBlocks>false</SearchBlocks>
+      <IsShipCategory>true</IsShipCategory>
+      <IsBlockCategory>false</IsBlockCategory>
+      <IsToolCategory>true</IsToolCategory>
+      <ItemIds>
+        <string>Drill/LargeGrapheneHeavyDrill</string>
+        <string>Drill/SmallGrapheneHeavyDrill</string>
+      </ItemIds>
+    </Category>
+    <!-- Start Ship Weapons/Tools Category in 'G' Menu -->
+    <Category xsi:type="MyObjectBuilder_GuiBlockCategoryDefinition">
+      <Id>
+        <TypeId>GuiBlockCategoryDefinition</TypeId>
+        <SubtypeId/>
+      </Id>
+      <DisplayName>DisplayName_Category_ShipWeaponsTools</DisplayName>
+      <Name>ShipWeaponsTools</Name>
+      <SearchBlocks>false</SearchBlocks>
+      <IsShipCategory>true</IsShipCategory>
+      <IsBlockCategory>false</IsBlockCategory>
+      <IsToolCategory>true</IsToolCategory>
+      <ItemIds>
+        <string>Drill/LargeGrapheneHeavyDrill</string>
+        <string>Drill/SmallGrapheneHeavyDrill</string>
+      </ItemIds>
+    </Category>
+    <!-- Start Cargo/Conveyor Category in 'G' Menu -->
+    <Category xsi:type="MyObjectBuilder_GuiBlockCategoryDefinition">
+      <Id>
+        <TypeId>GuiBlockCategoryDefinition</TypeId>
+        <SubtypeId/>
+      </Id>
+      <DisplayName>DisplayName_Category_ConveyorBlocks</DisplayName>
+      <Name>Conveyors</Name>
+      <ItemIds>
+        <string>CargoContainer/GrapheneCargoContainer</string>
+      </ItemIds>
+    </Category>
+    <!-- Start Small Blocks Only Category in 'G' Menu -->
+    <Category xsi:type="MyObjectBuilder_GuiBlockCategoryDefinition">
+      <Id>
+        <TypeId>GuiBlockCategoryDefinition</TypeId>
+        <SubtypeId/>
+      </Id>
+      <DisplayName>DisplayName_Category_SmallBlocks</DisplayName>
+      <Name>SmallBlocks</Name>
+      <ItemIds>
+        <string>BatteryBlock/SmallGrapheneSuperCapacitor</string>
+        <string>Reactor/SmBlockSmGenerator</string>
+        <string>Reactor/SmBlockLgGenerator</string>
+        <string>Drill/SmallGrapheneHeavyDrill</string>
+        <string>Drill/SmallGrapheneHeavyDrill</string>
+        <string>CubeBlock/S_GrapheneArmorBlastCenter</string>
+        <string>CubeBlock/S_GrapheneArmorBlastCorner</string>
+        <string>CubeBlock/S_GrapheneArmorBlastInvCorner</string>
+        <string>CubeBlock/S_GrapheneArmorBlastSide</string>
+        <string>CubeBlock/S_Graphene_Armor_Block</string>
+        <string>CubeBlock/S_Graphene_Armor_Slope</string>
+        <string>CubeBlock/S_Graphene_Armor_Corner</string>
+        <string>CubeBlock/S_Graphene_Heavy_Armor_InvCorner</string>
+        <string>RadioAntenna/OmnidirectionalAntennaSmall</string>
+      </ItemIds>
+    </Category>
+  </CategoryClasses>
+</Definitions>

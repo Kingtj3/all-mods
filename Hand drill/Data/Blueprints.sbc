@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Blueprints>
+    <!-- Carbon Ore - Graphite Component -->
+    <Blueprint>
+      <Id>
+        <TypeId>BlueprintDefinition</TypeId>
+        <SubtypeId>CarbonOreToGraphite</SubtypeId>
+      </Id>
+      <DisplayName>Graphite Powder</DisplayName>
+      <Icon>Textures\GUI\Icons\component\GraphitePowder.v2.dds</Icon>
+      <Prerequisites>
+        <Item Amount="1" SubtypeId="Carbon" TypeId="Ore"/>
+      </Prerequisites>
+      <Result Amount="0.8" SubtypeId="Carbon" TypeId="Ingot"/>
+      <BaseProductionTimeInSeconds>0.07</BaseProductionTimeInSeconds>
+    </Blueprint>
+    <!-- Graphene Components -->
+    <Blueprint>
+      <Id>
+        <TypeId>BlueprintDefinition</TypeId>
+        <SubtypeId>GraphenePlate</SubtypeId>
+      </Id>
+      <DisplayName>Graphene Plate</DisplayName>
+      <Icon>Textures\GUI\Icons\component\GraphenePlate.v3.dds</Icon>
+      <Prerequisites>
+        <Item Amount="1.041" SubtypeId="Carbon" TypeId="Ingot"/>
+      </Prerequisites>
+      <Result Amount="1" SubtypeId="GraphenePlate" TypeId="Component"/>
+      <BaseProductionTimeInSeconds>0.7</BaseProductionTimeInSeconds>
+    </Blueprint>
+    <Blueprint>
+      <Id>
+        <TypeId>BlueprintDefinition</TypeId>
+        <SubtypeId>GrapheneAerogelFilling</SubtypeId>
+      </Id>
+      <DisplayName>Graphene Aerogel Foam</DisplayName>
+      <Icon>Textures\GUI\Icons\component\GrapheneAerogel.v3.dds</Icon>
+      <Prerequisites>
+        <Item Amount="0.8" SubtypeId="Carbon" TypeId="Ingot"/>
+      </Prerequisites>
+      <Result Amount="1" SubtypeId="GrapheneAerogelFilling" TypeId="Component"/>
+      <BaseProductionTimeInSeconds>2</BaseProductionTimeInSeconds>
+    </Blueprint>
+    <Blueprint>
+      <Id>
+        <TypeId>BlueprintDefinition</TypeId>
+        <SubtypeId>GrapheneNanotubes</SubtypeId>
+      </Id>
+      <DisplayName>Carbon Nanotubes</DisplayName>
+      <Icon>Textures\GUI\Icons\component\GrapheneNanotubes.v3.dds</Icon>
+      <Prerequisites>
+        <Item Amount="0.0056" SubtypeId="Carbon" TypeId="Ingot"/>
+      </Prerequisites>
+      <Result Amount="1" SubtypeId="GrapheneNanotubes" TypeId="Component"/>
+      <BaseProductionTimeInSeconds>0.05</BaseProductionTimeInSeconds>
+    </Blueprint>
+    <!-- Graphene Power Group -->
+    <Blueprint>
+      <Id>
+        <TypeId>BlueprintDefinition</TypeId>
+        <SubtypeId>GraphenePowerCell</SubtypeId>
+      </Id>
+      <DisplayName>Graphene PowerCell</DisplayName>
+      <Icon>Textures\GUI\Icons\component\GraphenePowerComponent.dds</Icon>
+      <Prerequisites>
+        <Item Amount="10" SubtypeId="Carbon" TypeId="Ingot"/>
+        <Item Amount="2" SubtypeId="Silicon" TypeId="Ingot"/>
+        <Item Amount="2" SubtypeId="Nickel" TypeId="Ingot"/>
+      </Prerequisites>
+      <Result Amount="1" SubtypeId="GraphenePowerCell" TypeId="Component"/>
+      <BaseProductionTimeInSeconds>2</BaseProductionTimeInSeconds>
+    </Blueprint>
+    <!-- Graphene Oxygen and Hydrogen Bottles Group -->
+    <Blueprint>
+      <Id>
+        <TypeId>BlueprintDefinition</TypeId>
+        <SubtypeId>GrapheneOxygenBottlesRefill</SubtypeId>
+      </Id>
+      <DisplayName>DisplayName_Item_OxygenBottles</DisplayName>
+      <Icon>Textures\GUI\Icons\ingot\gravel_ingot.dds</Icon>
+      <Prerequisites>
+        <Item Amount="1" SubtypeId="GrapheneOxygenBottle" TypeId="OxygenContainerObject"/>
+      </Prerequisites>
+      <Result Amount="0.9" SubtypeId="Stone" TypeId="Ingot"/>
+      <BaseProductionTimeInSeconds>8.0</BaseProductionTimeInSeconds>
+    </Blueprint>
+    <Blueprint>
+      <Id>
+        <TypeId>BlueprintDefinition</TypeId>
+        <SubtypeId>GrapheneOxygenBottle</SubtypeId>
+      </Id>
+      <DisplayName>Graphene Oxygen Bottle</DisplayName>
+      <Icon>Textures\GUI\Icons\component\GrapheneOxygenBottle_Component.dds</Icon>
+      <Prerequisites>
+        <Item Amount="160" SubtypeId="Carbon" TypeId="Ingot"/>
+        <Item Amount="10" SubtypeId="Silver" TypeId="Ingot"/>
+        <Item Amount="30" SubtypeId="Nickel" TypeId="Ingot"/>
+      </Prerequisites>
+      <Result Amount="1" SubtypeId="GrapheneOxygenBottle" TypeId="OxygenContainerObject"/>
+      <BaseProductionTimeInSeconds>60</BaseProductionTimeInSeconds>
+    </Blueprint>
+    <Blueprint>
+      <Id>
+        <TypeId>BlueprintDefinition</TypeId>
+        <SubtypeId>GrapheneHydrogenBottlesRefill</SubtypeId>
+      </Id>
+      <DisplayName>DisplayName_Item_HydrogenBottles</DisplayName>
+      <Icon>Textures\GUI\Icons\ingot\gravel_ingot.dds</Icon>
+      <Prerequisites>
+        <Item Amount="1" SubtypeId="GrapheneHydrogenBottle" TypeId="GasContainerObject"/>
+      </Prerequisites>
+      <Result Amount="0.9" SubtypeId="Stone" TypeId="Ingot"/>
+      <BaseProductionTimeInSeconds>8.0</BaseProductionTimeInSeconds>
+    </Blueprint>
+    <Blueprint>
+      <Id>
+        <TypeId>BlueprintDefinition</TypeId>
+        <SubtypeId>GrapheneHydrogenBottle</SubtypeId>
+      </Id>
+      <DisplayName>Graphene Hydrogen Bottle</DisplayName>
+      <Icon>Textures\GUI\Icons\component\GrapheneHydrogenBottle_Component.dds</Icon>
+      <Prerequisites>
+        <Item Amount="160" SubtypeId="Carbon" TypeId="Ingot"/>
+        <Item Amount="10" SubtypeId="Silver" TypeId="Ingot"/>
+        <Item Amount="30" SubtypeId="Nickel" TypeId="Ingot"/>
+      </Prerequisites>
+      <Result Amount="1" SubtypeId="GrapheneHydrogenBottle" TypeId="GasContainerObject"/>
+      <BaseProductionTimeInSeconds>60</BaseProductionTimeInSeconds>
+    </Blueprint>
+  </Blueprints>
+</Definitions>
