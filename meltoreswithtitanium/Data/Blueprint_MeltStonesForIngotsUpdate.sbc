@@ -55,7 +55,7 @@
           <Item Amount="0.00025" TypeId="Ingot" SubtypeId="LWTS_Titanium" />
 		  <!--		SUMS 0.17, for 83% simulated waste		-->	
       </Results>
-      <BaseProductionTimeInSeconds>0.02</BaseProductionTimeInSeconds>
+      <BaseProductionTimeInSeconds>0.8</BaseProductionTimeInSeconds>
       <IsPrimary>true</IsPrimary>
     </Blueprint>
 	<!--	END MOD ENTRY	-->

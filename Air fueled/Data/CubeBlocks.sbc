@@ -46,7 +46,7 @@ Being able to be fueled through air vents, it is an excellent block for refuelin
       <ResourceSinkGroup>Generators</ResourceSinkGroup>
       <ResourceSourceGroup>Reactors</ResourceSourceGroup>
       <MaxPowerOutput>2000</MaxPowerOutput>
-      <FuelCapacity>8000000000</FuelCapacity>
+      <FuelCapacity>800000000000</FuelCapacity>
       <EmissiveColorPreset>Extended</EmissiveColorPreset>
       <IsAirTight>false</IsAirTight>
       <InventorySize>
@@ -138,7 +138,7 @@ Being able to be fueled through air vents, it is an excellent block for refuelin
       <ResourceSinkGroup>Generators</ResourceSinkGroup>
       <ResourceSourceGroup>Reactors</ResourceSourceGroup>
       <MaxPowerOutput>2000</MaxPowerOutput>
-      <FuelCapacity>8000000000</FuelCapacity>
+      <FuelCapacity>800000000000</FuelCapacity>
       <IsAirTight>false</IsAirTight>
       <InventorySize>
         <X>1</X>
