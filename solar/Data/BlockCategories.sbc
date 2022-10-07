@@ -1,0 +1,35 @@
+<?xml version="1.0"  encoding="utf-8"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CategoryClasses>
+  
+    <Category xsi:type="MyObjectBuilder_GuiBlockCategoryDefinition">
+      <Id>
+        <TypeId>GuiBlockCategoryDefinition</TypeId>
+        <SubtypeId/>
+      </Id>
+      <DisplayName>Tiered Solar Panels</DisplayName>
+      <Name>TieredSolarPanels</Name>
+      <ItemIds>
+        <string>LargeBlockGoldenSolarPanel</string>
+		<string>LargeBlockBlackSolarPanel</string>
+		<string>LargeBlockRedSolarPanel</string>
+		<string>SmallBlockGoldenSolarPanel</string>
+		<string>SmallBlockBlackSolarPanel</string>
+		<string>SmallBlockRedSolarPanel</string>
+		
+      </ItemIds>
+    </Category>
+    <Category xsi:type="MyObjectBuilder_GuiBlockCategoryDefinition">
+      <Id>
+        <TypeId>GuiBlockCategoryDefinition</TypeId>
+        <SubtypeId/>
+      </Id>
+      <DisplayName>DisplayName_Category_LargeBlocks</DisplayName>
+      <Name>LargeBlocks</Name>
+	  <StrictSearch>true</StrictSearch>
+      <ItemIds>
+        <string>GoldenSolarPanel/LargeBlockGoldenSolarPanel</string>
+      </ItemIds>       
+    </Category>
+  </CategoryClasses>
+</Definitions>

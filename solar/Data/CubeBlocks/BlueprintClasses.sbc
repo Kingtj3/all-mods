@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <BlueprintClassEntries>
+    <Entry Class="LargeBlocks" BlueprintSubtypeId="SolarPanel/LargeBlockGoldenSolarPanel" />
+    <Entry Class="SmallBlocks" BlueprintSubtypeId="SolarPanel/SmallBlockGoldenSolarPanel" />
+	<Entry Class="LargeBlocks" BlueprintSubtypeId="SolarPanel/LargeBlockBlackSolarPanel" />
+    <Entry Class="SmallBlocks" BlueprintSubtypeId="SolarPanel/SmallBlockBlackSolarPanel" />
+	<Entry Class="LargeBlocks" BlueprintSubtypeId="SolarPanel/LargeBlockRedSolarPanel" />
+    <Entry Class="SmallBlocks" BlueprintSubtypeId="SolarPanel/SmallBlockRedSolarPanel" />
+	<Entry Class="Components" BlueprintSubtypeId="SolarCellGold" />
+	<Entry Class="Components" BlueprintSubtypeId="SolarCellBlack" />
+	<Entry Class="Components" BlueprintSubtypeId="SolarCellRed" />
+	<Entry Class="Electronics" BlueprintSubtypeId="SolarCellGold" />
+	<Entry Class="Electronics" BlueprintSubtypeId="SolarCellBlack" />
+	<Entry Class="Electronics" BlueprintSubtypeId="SolarCellRed" />
+  </BlueprintClassEntries>
+</Definitions>
