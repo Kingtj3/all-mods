@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-16"?>
+<Configuration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Logging>false</Logging>
+  <InfestExistingGrids>true</InfestExistingGrids>
+  <DamageInteriorTurrets>true</DamageInteriorTurrets>
+  <InfestationFrequency>0.2</InfestationFrequency>
+  <MaxLiveBugsPerGrid>12</MaxLiveBugsPerGrid>
+  <MinimumGridSize>200</MinimumGridSize>
+  <SupportedCharacters>
+    <SubtypeId>Space_spider_black</SubtypeId>
+    <SubtypeId>Space_spider_brown</SubtypeId>
+    <SubtypeId>Space_spider_green</SubtypeId>
+    <SubtypeId>Space_spider</SubtypeId>
+    <SubtypeId>SpaceSmallSpider</SubtypeId>
+    <SubtypeId>SpaceSmallSpider_Green</SubtypeId>
+    <SubtypeId>SpaceSmallSpider_Brown</SubtypeId>
+    <SubtypeId>SpaceSmallSpider_Black</SubtypeId>
+  </SupportedCharacters>
+  <InfestationDefinitions>
+    <InfestationDefinition>
+      <Description>Small Infestation</Description>
+      <Frequency>6</Frequency>
+      <Activation>0.3</Activation>
+      <TotalMin>5</TotalMin>
+      <TotalMax>10</TotalMax>
+      <Spiders>
+        <SubtypeId>SpaceSmallSpider</SubtypeId>
+        <SubtypeId>SpaceSmallSpider_Green</SubtypeId>
+      </Spiders>
+    </InfestationDefinition>
+    <InfestationDefinition>
+      <Description>Large Infestation</Description>
+      <Frequency>3</Frequency>
+      <Activation>0.6</Activation>
+      <TotalMin>10</TotalMin>
+      <TotalMax>15</TotalMax>
+      <Spiders>
+        <SubtypeId>SpaceSmallSpider_Black</SubtypeId>
+        <SubtypeId>SpaceSmallSpider_Brown</SubtypeId>
+      </Spiders>
+      <Queens>
+        <SubtypeId>Space_spider_black</SubtypeId>
+        <SubtypeId>Space_spider_brown</SubtypeId>
+      </Queens>
+    </InfestationDefinition>
+  </InfestationDefinitions>
+</Configuration>

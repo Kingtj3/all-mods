@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-16"?>
+<Configuration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Logging>false</Logging>
+  <RazeInteriorTurrets>false</RazeInteriorTurrets>
+  <SupportedCharacters>
+    <SubtypeId>Default_Astronaut</SubtypeId>
+    <SubtypeId>Default_Astronaut_Female</SubtypeId>
+    <SubtypeId>Drone_Bot</SubtypeId>
+    <SubtypeId>Boss_Bot</SubtypeId>
+    <SubtypeId>Police_Bot</SubtypeId>
+    <SubtypeId>Target_Dummy</SubtypeId>
+    <SubtypeId>Space_Skeleton</SubtypeId>
+    <SubtypeId>Ghost_Bot</SubtypeId>
+  </SupportedCharacters>
+  <SupportedHandWeapons>
+    <SubtypeId>SemiAutoPistolItem</SubtypeId>
+    <SubtypeId>FullAutoPistolItem</SubtypeId>
+    <SubtypeId>ElitePistolItem</SubtypeId>
+    <SubtypeId>AutomaticRifleItem</SubtypeId>
+    <SubtypeId>PreciseAutomaticRifleItem</SubtypeId>
+    <SubtypeId>RapidFireAutomaticRifleItem</SubtypeId>
+    <SubtypeId>UltimateAutomaticRifleItem</SubtypeId>
+    <SubtypeId>BasicHandHeldLauncherItem</SubtypeId>
+    <SubtypeId>AdvancedHandHeldLauncherItem</SubtypeId>
+  </SupportedHandWeapons>
+  <SupportedSounds />
+  <CrewDefinitions>
+    <Crew>
+      <Frequency>7</Frequency>
+      <RequiredCrew>4</RequiredCrew>
+      <Activation>0.2</Activation>
+      <CrewMember>
+        <SubtypeId>Default_Astronaut</SubtypeId>
+        <SubtypeId>Default_Astronaut_Female</SubtypeId>
+      </CrewMember>
+      <Captain>
+        <SubtypeId>Default_Astronaut</SubtypeId>
+        <SubtypeId>Default_Astronaut_Female</SubtypeId>
+      </Captain>
+      <HandWeapons>
+        <SubtypeId>SemiAutoPistolItem</SubtypeId>
+        <SubtypeId>FullAutoPistolItem</SubtypeId>
+      </HandWeapons>
+      <IdleSounds />
+      <TauntSounds />
+      <PainSounds />
+    </Crew>
+    <Crew>
+      <Frequency>1</Frequency>
+      <RequiredCrew>8</RequiredCrew>
+      <Activation>0.2</Activation>
+      <CrewMember>
+        <SubtypeId>Police_Bot</SubtypeId>
+      </CrewMember>
+      <Captain>
+        <SubtypeId>Boss_Bot</SubtypeId>
+      </Captain>
+      <HandWeapons>
+        <SubtypeId>AutomaticRifleItem</SubtypeId>
+        <SubtypeId>RapidFireAutomaticRifleItem</SubtypeId>
+      </HandWeapons>
+      <IdleSounds />
+      <TauntSounds />
+      <PainSounds />
+    </Crew>
+    <Crew>
+      <Description>Common Human Crew</Description>
+      <Frequency>5</Frequency>
+      <RequiredCrew>3</RequiredCrew>
+      <Activation>0.2</Activation>
+      <CrewMember>
+        <SubtypeId>Default_Astronaut</SubtypeId>
+        <SubtypeId>Default_Astronaut_Female</SubtypeId>
+        <SubtypeId>Astronaut_Nosuit</SubtypeId>
+        <SubtypeId>Astronaut_Nosuit</SubtypeId>
+        <SubtypeId>SE_astronautNoSuit</SubtypeId>
+        <SubtypeId>SE_astronautNoSuit</SubtypeId>
+        <SubtypeId>SE_astronautNoSuitFemale</SubtypeId>
+        <SubtypeId>SE_astronautNoSuitFemale</SubtypeId>
+        <SubtypeId>Male Astronaut 1</SubtypeId>
+        <SubtypeId>Male Astronaut 2</SubtypeId>
+        <SubtypeId>Male Astronaut 3</SubtypeId>
+        <SubtypeId>Male Astronaut 4</SubtypeId>
+        <SubtypeId>Male Astronaut 5</SubtypeId>
+        <SubtypeId>Male Astronaut 6</SubtypeId>
+        <SubtypeId>Female Astronaut 1</SubtypeId>
+        <SubtypeId>Female Astronaut 2</SubtypeId>
+        <SubtypeId>Female Astronaut 3</SubtypeId>
+        <SubtypeId>Female Astronaut 4</SubtypeId>
+        <SubtypeId>Female Astronaut 5</SubtypeId>
+        <SubtypeId>Female Astronaut 6</SubtypeId>
+      </CrewMember>
+      <Captain>
+        <SubtypeId>Default_Astronaut</SubtypeId>
+        <SubtypeId>Default_Astronaut_Female</SubtypeId>
+      </Captain>
+      <HandWeapons>
+        <SubtypeId>SemiAutoPistolItem</SubtypeId>
+        <SubtypeId>FullAutoPistolItem</SubtypeId>
+      </HandWeapons>
+      <IdleSounds>
+        <SubtypeId>CrewVoicesColonistIdle</SubtypeId>
+      </IdleSounds>
+      <TauntSounds>
+        <SubtypeId>CrewVoicesColonistTaunt</SubtypeId>
+      </TauntSounds>
+      <PainSounds>
+        <SubtypeId>CrewVoicesColonistPain</SubtypeId>
+      </PainSounds>
+    </Crew>
+    <Crew>
+      <Description>Attack Robots</Description>
+      <Frequency>1</Frequency>
+      <RequiredCrew>4</RequiredCrew>
+      <Activation>0.2</Activation>
+      <CrewMember>
+        <SubtypeId>Police_Bot</SubtypeId>
+      </CrewMember>
+      <Captain>
+        <SubtypeId>Boss_Bot</SubtypeId>
+      </Captain>
+      <HandWeapons>
+        <SubtypeId>AutomaticRifleItem</SubtypeId>
+        <SubtypeId>RapidFireAutomaticRifleItem</SubtypeId>
+      </HandWeapons>
+      <IdleSounds>
+        <SubtypeId>CrewVoicesAttackRobotIdle</SubtypeId>
+      </IdleSounds>
+      <TauntSounds>
+        <SubtypeId>CrewVoicesAttackRobotTaunt</SubtypeId>
+        <SubtypeId>CrewVoicesAttackRobotPain</SubtypeId>
+      </TauntSounds>
+      <PainSounds>
+        <SubtypeId>CrewVoicesAttackRobotPain</SubtypeId>
+      </PainSounds>
+    </Crew>
+    <Crew>
+      <Description>Psychotic Robots</Description>
+      <Frequency>1</Frequency>
+      <RequiredCrew>6</RequiredCrew>
+      <Activation>0.2</Activation>
+      <OverrideCrewColor>
+        <Red>245</Red>
+        <Blue>245</Blue>
+        <Green>245</Green>
+      </OverrideCrewColor>
+      <CrewMember>
+        <SubtypeId>Target_Dummy</SubtypeId>
+      </CrewMember>
+      <Captain>
+        <SubtypeId>Target_Dummy</SubtypeId>
+      </Captain>
+      <HandWeapons>
+        <SubtypeId>ElitePistolItem</SubtypeId>
+        <SubtypeId>EliteRifleItem</SubtypeId>
+      </HandWeapons>
+      <IdleSounds>
+        <SubtypeId>CrewVoicesPsychoticRobotIdle</SubtypeId>
+      </IdleSounds>
+      <TauntSounds>
+        <SubtypeId>CrewVoicesPsychoticRobotTaunt</SubtypeId>
+      </TauntSounds>
+      <PainSounds>
+        <SubtypeId>CrewVoicesPsychoticRobotPain</SubtypeId>
+        <SubtypeId>CrewVoicesPsychoticRobotIdle</SubtypeId>
+      </PainSounds>
+    </Crew>
+    <Crew>
+      <Description>Veteran Pirates</Description>
+      <Frequency>2</Frequency>
+      <RequiredCrew>3</RequiredCrew>
+      <Activation>0.2</Activation>
+      <CrewMember>
+        <SubtypeId>Old Astronaut</SubtypeId>
+        <SubtypeId>Old Astronaut no Suit</SubtypeId>
+        <SubtypeId>Old Astronaut Female</SubtypeId>
+        <SubtypeId>Old Astronaut Female no suit</SubtypeId>
+      </CrewMember>
+      <Captain>
+        <SubtypeId>Old Astronaut</SubtypeId>
+        <SubtypeId>Old Astronaut Female</SubtypeId>
+      </Captain>
+      <HandWeapons>
+        <SubtypeId>FullAutoPistolItem</SubtypeId>
+        <SubtypeId>RapidFireAutomaticRifleItem</SubtypeId>
+      </HandWeapons>
+      <IdleSounds>
+        <SubtypeId>CrewVoicesPirateIdle</SubtypeId>
+      </IdleSounds>
+      <TauntSounds>
+        <SubtypeId>CrewVoicesPirateTaunt</SubtypeId>
+      </TauntSounds>
+      <PainSounds>
+        <SubtypeId>CrewVoicesPiratePain</SubtypeId>
+      </PainSounds>
+    </Crew>
+  </CrewDefinitions>
+  <BlacklistFactions />
+  <BlacklistGrids />
+</Configuration>

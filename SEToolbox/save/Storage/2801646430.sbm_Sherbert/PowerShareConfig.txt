@@ -1,0 +1,4 @@
+[PowerShare]
+Maximum Range=5000000000
+Efficency=1.00
+Maximum Transfer=150000
