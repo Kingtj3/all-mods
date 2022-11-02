@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CubeBlocks>
+    <Definition xsi:type="MyObjectBuilder_BatteryBlockDefinition">
+      <Id>
+        <TypeId>BatteryBlock</TypeId>
+        <SubtypeId>LargeBlockSuperconductingBatteryBlock</SubtypeId>
+      </Id>
+      <DisplayName>Superconducting Battery</DisplayName>
+      <Icon>Textures\GUI\Icons\Cubes\Battery.dds</Icon>
+      <Description>Description_Battery</Description>
+      <CubeSize>Large</CubeSize>
+      <BlockTopology>TriangleMesh</BlockTopology>
+      <Size x="1" y="1" z="1" />
+      <ModelOffset x="0" y="0" z="0" />
+      <Model>Models\Cubes\Large\BatteryLarge.mwm</Model>
+      <Components>
+        <Component Subtype="SteelPlate" Count="20" />
+        <Component Subtype="Construction" Count="10" />
+        <Component Subtype="Superconductor" Count="800" />
+        <Component Subtype="Computer" Count="25" />
+        <Component Subtype="Construction" Count="20" />
+        <Component Subtype="SteelPlate" Count="60" />
+      </Components>
+      <CriticalComponent Subtype="Superconductor" Index="0" />
+      <BuildProgressModels>
+        <Model BuildPercentUpperBound="0.33" File="Models\Cubes\Large\BatteryLargeConstruction_1.mwm" />
+        <Model BuildPercentUpperBound="0.66" File="Models\Cubes\Large\BatteryLargeConstruction_2.mwm" />
+        <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Large\BatteryLargeConstruction_3.mwm" />
+      </BuildProgressModels>
+      <BlockPairName>SuperconductingBatteryBlock</BlockPairName>
+      <EdgeType>Light</EdgeType>
+      <BuildTimeSeconds>40</BuildTimeSeconds>
+
+      <ResourceSourceGroup>Battery</ResourceSourceGroup>
+      <MaxPowerOutput>1200</MaxPowerOutput>
+
+      <ResourceSinkGroup>BatteryBlock</ResourceSinkGroup>
+      <RequiredPowerInput>12000</RequiredPowerInput>
+      <AdaptibleInput>true</AdaptibleInput>
+      <MaxStoredPower>30000</MaxStoredPower>
+      <InitialStoredPowerRatio>0</InitialStoredPowerRatio>
+
+      <InventorySize>
+        <X>1</X>
+        <Y>1</Y>
+        <Z>1</Z>
+      </InventorySize>
+      <Public>true</Public>
+      <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+      <DamagedSound>ParticleElectrical</DamagedSound>
+      <EmissiveColorPreset>Extended</EmissiveColorPreset>
+      <DestroyEffect>BlockDestroyedExplosion_Large</DestroyEffect>
+      <DestroySound>WepSmallWarheadExpl</DestroySound>
+      <PCU>15</PCU>
+      <IsAirTight>true</IsAirTight>
+      <MirroringZ>Y</MirroringZ>
+      <MirroringY>Z</MirroringY>      
+    </Definition>
+    <Definition xsi:type="MyObjectBuilder_BatteryBlockDefinition">
+      <Id>
+        <TypeId>BatteryBlock</TypeId>
+        <SubtypeId>SmallBlockSuperconductingBatteryBlock</SubtypeId>
+      </Id>
+      <DisplayName>Superconducting Battery</DisplayName>
+      <Icon>Textures\GUI\Icons\Cubes\Battery.dds</Icon>
+      <Description>Description_Battery</Description>
+      <CubeSize>Small</CubeSize>
+      <BlockTopology>TriangleMesh</BlockTopology>
+      <Size x="3" y="2" z="3" />
+      <ModelOffset x="0" y="0" z="0" />
+      <Model>Models\Cubes\Small\BatterySmall.mwm</Model>
+      <Components>
+        <Component Subtype="SteelPlate" Count="5" />
+        <Component Subtype="Construction" Count="2" />
+        <Component Subtype="Superconductor" Count="20" />
+        <Component Subtype="Computer" Count="2" />
+        <Component Subtype="Construction" Count="3" />
+        <Component Subtype="SteelPlate" Count="20" />
+      </Components>
+      <CriticalComponent Subtype="Superconductor" Index="0" />
+      <BuildProgressModels>
+        <Model BuildPercentUpperBound="0.50" File="Models\Cubes\Small\BatterySmallConstruction_1.mwm" />
+        <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Small\BatterySmallConstruction_2.mwm" />
+      </BuildProgressModels>
+      <BlockPairName>SuperconductingBatteryBlock</BlockPairName>
+      <EdgeType>Light</EdgeType>
+      <BlockVariants>
+        <BlockVariant>
+          <TypeId>BatteryBlock</TypeId>
+          <SubtypeId>SmallBlockSmallSuperconductingBatteryBlock</SubtypeId>
+        </BlockVariant>
+      </BlockVariants>
+      <BuildTimeSeconds>20</BuildTimeSeconds>
+
+      <ResourceSourceGroup>Battery</ResourceSourceGroup>
+      <MaxPowerOutput>400</MaxPowerOutput>
+
+      <ResourceSinkGroup>BatteryBlock</ResourceSinkGroup>
+      <RequiredPowerInput>400</RequiredPowerInput>
+      <MaxStoredPower>1000</MaxStoredPower>
+      <InitialStoredPowerRatio>0</InitialStoredPowerRatio>
+
+      <InventorySize>
+        <X>1</X>
+        <Y>1</Y>
+        <Z>1</Z>
+      </InventorySize>
+      <Public>true</Public>
+      <DamageEffectName>Damage_Electrical_Damaged</DamageEffectName>
+      <DamagedSound>ParticleElectrical</DamagedSound>
+      <EmissiveColorPreset>Extended</EmissiveColorPreset>
+      <DestroyEffect>BlockDestroyedExplosion_Small</DestroyEffect>
+      <DestroySound>WepSmallWarheadExpl</DestroySound>
+      <PCU>15</PCU>
+      <IsAirTight>false</IsAirTight>
+      <MirroringZ>Y</MirroringZ>
+      <MirroringY>Z</MirroringY>      
+    </Definition>
+    <Definition xsi:type="MyObjectBuilder_BatteryBlockDefinition">
+      <Id>
+        <TypeId>BatteryBlock</TypeId>
+        <SubtypeId>SmallBlockSmallSuperconductingBatteryBlock</SubtypeId>
+      </Id>
+      <DisplayName>Small Superconducting Battery</DisplayName>
+      <Icon>Textures/GUI/Icons/Cubes/Battery1x1.dds</Icon>
+      <Description>Description_Battery</Description>
+      <GuiVisible>true</GuiVisible>
+      <CubeSize>Small</CubeSize>
+      <BlockTopology>TriangleMesh</BlockTopology>
+      <Size x="1" y="1" z="1" />
+      <ModelOffset x="0" y="0" z="0" />
+      <Model>Models\Cubes\Small\BatterySmall1x1.mwm</Model>
+      <Components>
+        <Component Subtype="SteelPlate" Count="2" />
+        <Component Subtype="Construction" Count="1" />
+        <Component Subtype="Superconductor" Count="2" />
+        <Component Subtype="Computer" Count="2" />
+        <Component Subtype="Construction" Count="1" />
+        <Component Subtype="SteelPlate" Count="2" />
+      </Components>
+      <CriticalComponent Subtype="Computer" Index="0" />
+      <BuildProgressModels>
+        <Model BuildPercentUpperBound="0.50" File="Models\Cubes\Small\BatterySmall1x1_Construction_1.mwm" />
+        <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Small\BatterySmall1x1_Construction_2.mwm" />
+      </BuildProgressModels>
+      <BlockPairName>SuperconductingBattery1x1Block</BlockPairName>
+      <EdgeType>Light</EdgeType>
+      <BuildTimeSeconds>8</BuildTimeSeconds>
+
+      <ResourceSourceGroup>Battery</ResourceSourceGroup>
+      <MaxPowerOutput>20</MaxPowerOutput>
+
+      <ResourceSinkGroup>BatteryBlock</ResourceSinkGroup>
+      <RequiredPowerInput>20</RequiredPowerInput>
+      <MaxStoredPower>50</MaxStoredPower>
+      <InitialStoredPowerRatio>0</InitialStoredPowerRatio>
+
+      <InventorySize>
+        <X>1</X>
+        <Y>1</Y>
+        <Z>1</Z>
+      </InventorySize>
+      <Public>true</Public>
+      <DamageEffectId>214</DamageEffectId>
+      <DamagedSound>ParticleElectrical</DamagedSound>
+      <EmissiveColorPreset>Extended</EmissiveColorPreset>      
+    </Definition>
+  </CubeBlocks>
+</Definitions>
