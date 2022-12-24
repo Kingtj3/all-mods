@@ -1,6 +1,0 @@
-[22:06:37:049] [I] [Sisk.SmarterSuit.Mod->InitializeLogging()]: Logging initialized
-[22:06:37:059] [I] [Sisk.SmarterSuit.Mod->InitializeNetwork()]: Initialize Network
-[22:06:37:064] [I] [Sisk.SmarterSuit.Mod->InitializeNetwork()]: IsClient False, IsServer: True, IsDedicated: True
-[22:06:37:064] [I] [Sisk.SmarterSuit.Mod->InitializeNetwork()]: Network initialized
-[08:51:16:780] [I] [Sisk.SmarterSuit.Mod->UnloadData()]: Cap network connections
-[08:51:16:780] [I] [Sisk.SmarterSuit.Mod->UnloadData()]: Logging stopped
